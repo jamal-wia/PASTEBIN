@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">PASTEBIN</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="entry_activity_already_have_account">Already have an account? Sign in.</string>
+    <string name="entry_activity_do_not_have_account">Do not have an account yet? Sign up now.</string>
+    <string name="forgot_login_help_with_logging_on_to_the_system">Forgot login details? Help with logging on to the system.</string>
+    <string name="next">Next</string>
+    <string name="login_in">Login In</string>
+    <string name="password">Password</string>
+    <string name="user_name">Username</string>
+    <string name="email">Email</string>
+    <string name="name_and_password">NAME AND PASSWORD</string>
+    <string name="to_register">To register</string>
 </resources>
