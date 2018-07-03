@@ -18,25 +18,29 @@
             android:src="@drawable/logo_pastebin" />
 
         <EditText
-            android:hint="@string/user_name"
+            android:id="@+id/edit_login_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:ems="15" />
+            android:ems="15"
+            android:hint="@string/user_name" />
 
         <EditText
-            android:hint="@string/password"
+            android:id="@+id/edit_login_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:ems="15" />
+            android:ems="15"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
         <Button
+            android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:ems="20"
-            android:text="@string/login_in" />
+            android:text="@string/login" />
 
         <TextView
             android:layout_width="wrap_content"

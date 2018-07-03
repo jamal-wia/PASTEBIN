@@ -14,9 +14,9 @@ public class DialogUtils {
         this.onClickNegativeButtonListener = onClickNegativeButtonListener;
     }
 
-    public void showStandartDialogWindow(Context context, String title, String message,
-                                                String titleForPositiveButton,
-                                                String titleForNegativeButton) {
+    public void showStandardDialogWindow(Context context, String title, String message,
+                                         String titleForPositiveButton,
+                                         String titleForNegativeButton) {
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)

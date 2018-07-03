@@ -31,9 +31,10 @@ public class EntryActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().findFragmentById(R.id.frameLayout_entry_container)
                 instanceof NameAndPasswordFragment) {
-            new DialogUtils(super::onBackPressed, () -> { }).showStandartDialogWindow(this, "You're almost there!",
-                    "Do you really want to come back?", "Back", "Cancel");
-        }else {
+            new DialogUtils(super::onBackPressed, () -> {
+            }).showStandardDialogWindow(this, getString(R.string.you_are_almost),
+                    getString(R.string.do_you_really_back), getString(R.string.back), getString(R.string.cancel));
+        } else {
             super.onBackPressed();
         }
     }

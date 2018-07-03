@@ -7,10 +7,14 @@
     <string name="entry_activity_do_not_have_account">Do not have an account yet? Sign up now.</string>
     <string name="forgot_login_help_with_logging_on_to_the_system">Forgot login details? Help with logging on to the system.</string>
     <string name="next">Next</string>
-    <string name="login_in">Login In</string>
+    <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="user_name">Username</string>
     <string name="email">Email</string>
     <string name="name_and_password">NAME AND PASSWORD</string>
     <string name="to_register">To register</string>
+    <string name="do_you_really_back">Do you really want to come back?</string>
+    <string name="you_are_almost">You\'re almost there!</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
 </resources>
