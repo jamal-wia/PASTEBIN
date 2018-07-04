@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.SplashActivity">
 
-    <ImageView
-        android:layout_gravity="center"
-        android:src="@drawable/logo_pastebin"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_pastebin" />
+
+        <ProgressBar
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </FrameLayout>

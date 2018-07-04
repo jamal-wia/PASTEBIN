@@ -25,6 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.jamal.pastebin.utils.CommonUtils.showToastLong;
+
 public class LoginFragment extends Fragment {
 
     private EditText userNameEdit;
@@ -53,9 +55,19 @@ public class LoginFragment extends Fragment {
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        assert response.body() != null;
-                        App.getPreferencesHelper().saveToken( Objects.requireNonNull(response.body()).string());
-                        showMainScreen();
+                        App.getPreferencesHelper().saveToken(response.body().string());
+                        if (App.getPreferencesHelper().getToken().equals("Bad API request, use POST request, not GET")) {
+                            showToastLong(getActivity(), "Bad API request, use POST request, not GET");
+                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid api_dev_key")) {
+                            showToastLong(getActivity(), "Bad API request, invalid api_dev_key");
+                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid login")) {
+                            showToastLong(getActivity(), "Bad API request, invalid login");
+                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, account not active")) {
+                            showToastLong(getActivity(), "Bad API request, account not active");
+                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid POST parameters")) {
+                            showToastLong(getActivity(), "Bad API request, invalid POST parameters");
+                        } else showMainScreen();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -75,7 +87,7 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private  void showMainScreen(){
+    private void showMainScreen() {
         startActivity(new Intent(getActivity(), MainActivity.class));
         Objects.requireNonNull(getActivity()).finish();
     }
@@ -84,6 +96,6 @@ public class LoginFragment extends Fragment {
         userNameEdit = view.findViewById(R.id.edit_login_username);
         passwordEdit = view.findViewById(R.id.edit_login_password);
         loginButton = view.findViewById(R.id.button_login);
-        loginButton.setOnClickListener(v-> callRequest());
+        loginButton.setOnClickListener(v -> callRequest());
     }
 }
