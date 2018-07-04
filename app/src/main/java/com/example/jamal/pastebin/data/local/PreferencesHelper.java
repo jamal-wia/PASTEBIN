@@ -18,7 +18,7 @@ public class PreferencesHelper {
         editor.apply();
     }
 
-    private String getToken(){
-        return sharedPreferences.getString(PREF_TOKEN,"");
+    public String getToken(){
+        return sharedPreferences.getString(PREF_TOKEN,null);
     }
 }

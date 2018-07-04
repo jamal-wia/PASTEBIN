@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.entry.fragments;
+package com.example.jamal.pastebin.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

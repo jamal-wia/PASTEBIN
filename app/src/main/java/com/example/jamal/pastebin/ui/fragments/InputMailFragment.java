@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.entry.fragments;
+package com.example.jamal.pastebin.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.Button;
 
 import com.example.jamal.pastebin.R;
 
+import java.util.Objects;
+
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragmentInStack;
 
 public class InputMailFragment extends Fragment {
@@ -18,9 +20,8 @@ public class InputMailFragment extends Fragment {
     Button nextButton;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_input_mail, container, false);
     }
 
@@ -29,7 +30,7 @@ public class InputMailFragment extends Fragment {
         initViews(view);
 
         nextButton.setOnClickListener(v -> showFragmentInStack(R.id.frameLayout_entry_container,
-                new NameAndPasswordFragment(), getActivity()));
+                new NameAndPasswordFragment(), Objects.requireNonNull(getActivity())));
     }
 
     private void initViews(@NonNull View view) {

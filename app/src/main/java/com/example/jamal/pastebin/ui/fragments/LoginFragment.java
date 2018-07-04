@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.entry.fragments;
+package com.example.jamal.pastebin.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.jamal.pastebin.MainActivity;
+import com.example.jamal.pastebin.ui.activities.MainActivity;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.App;
+import com.example.jamal.pastebin.utils.CommonUtils;
 import com.example.jamal.pastebin.utils.Constants;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -48,10 +50,11 @@ public class LoginFragment extends Fragment {
                 passwordEdit.getText().toString());
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        App.getPreferencesHelper().saveToken( response.body().string());
+                        assert response.body() != null;
+                        App.getPreferencesHelper().saveToken( Objects.requireNonNull(response.body()).string());
                         showMainScreen();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -60,15 +63,15 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                CommonUtils.showToastShort(getActivity(), getString(R.string.network_error));
             }
         });
     }
 
     private  void showMainScreen(){
         startActivity(new Intent(getActivity(), MainActivity.class));
-        getActivity().finish();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
     private void initViews(@NonNull View view) {

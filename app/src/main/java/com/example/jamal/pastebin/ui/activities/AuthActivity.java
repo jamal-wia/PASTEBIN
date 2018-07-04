@@ -1,19 +1,19 @@
-package com.example.jamal.pastebin.entry.activities;
+package com.example.jamal.pastebin.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.entry.fragments.InputMailFragment;
-import com.example.jamal.pastebin.entry.fragments.LoginFragment;
-import com.example.jamal.pastebin.entry.fragments.NameAndPasswordFragment;
+import com.example.jamal.pastebin.ui.fragments.InputMailFragment;
+import com.example.jamal.pastebin.ui.fragments.LoginFragment;
+import com.example.jamal.pastebin.ui.fragments.NameAndPasswordFragment;
 import com.example.jamal.pastebin.utils.DialogUtils;
 
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragment;
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragmentInStack;
 
-public class EntryActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
 
     Button switchFragmentsButton;
 
@@ -22,9 +22,8 @@ public class EntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         initViews();
-
         showFragment(R.id.frameLayout_entry_container, new LoginFragment(), this);
-        switchFragmentsButton.setOnClickListener(v -> selectFragments());
+
     }
 
     @Override
@@ -52,5 +51,6 @@ public class EntryActivity extends AppCompatActivity {
 
     private void initViews() {
         switchFragmentsButton = findViewById(R.id.button_entry_controlFragments);
+        switchFragmentsButton.setOnClickListener(v -> selectFragments());
     }
 }
