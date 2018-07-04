@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 showAuth();
             }
-        }, 1000);
+        }, 500);
     }
 
     private void showAuth() {
