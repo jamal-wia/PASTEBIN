@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.jamal.pastebin.ui.activities.MainActivity;
-import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.App;
-import com.example.jamal.pastebin.utils.CommonUtils;
+import com.example.jamal.pastebin.R;
+import com.example.jamal.pastebin.ui.activities.MainActivity;
 import com.example.jamal.pastebin.utils.Constants;
+import com.example.jamal.pastebin.utils.StandardDialogWindow;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -64,7 +64,13 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                CommonUtils.showToastShort(getActivity(), getString(R.string.network_error));
+                new StandardDialogWindow((StandardDialogWindow.OnClickPositiveButtonListener) () -> {
+
+                }).withPositiveButton(
+                        getActivity(),
+                        getString(R.string.error),
+                        getString(R.string.network_error),
+                        getString(R.string.back));
             }
         });
     }

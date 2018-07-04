@@ -8,7 +8,7 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.ui.fragments.InputMailFragment;
 import com.example.jamal.pastebin.ui.fragments.LoginFragment;
 import com.example.jamal.pastebin.ui.fragments.NameAndPasswordFragment;
-import com.example.jamal.pastebin.utils.DialogUtils;
+import com.example.jamal.pastebin.utils.StandardDialogWindow;
 
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragment;
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragmentInStack;
@@ -30,8 +30,8 @@ public class AuthActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().findFragmentById(R.id.frameLayout_entry_container)
                 instanceof NameAndPasswordFragment) {
-            new DialogUtils(super::onBackPressed, () -> {
-            }).showStandardDialogWindow(this, getString(R.string.you_are_almost),
+            new StandardDialogWindow(super::onBackPressed, () -> {
+            }).withNegativeAndPositiveButoon(this, getString(R.string.you_are_almost),
                     getString(R.string.do_you_really_back), getString(R.string.back), getString(R.string.cancel));
         } else {
             super.onBackPressed();
