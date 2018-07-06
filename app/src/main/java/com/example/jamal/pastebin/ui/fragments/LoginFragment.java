@@ -55,18 +55,28 @@ public class LoginFragment extends Fragment {
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        App.getPreferencesHelper().saveToken(response.body().string());
-                        if (App.getPreferencesHelper().getToken().equals("Bad API request, use POST request, not GET")) {
-                            showToastLong(getActivity(), "Bad API request, use POST request, not GET");
-                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid api_dev_key")) {
-                            showToastLong(getActivity(), "Bad API request, invalid api_dev_key");
-                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid login")) {
-                            showToastLong(getActivity(), "Bad API request, invalid login");
-                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, account not active")) {
-                            showToastLong(getActivity(), "Bad API request, account not active");
-                        } else if (App.getPreferencesHelper().getToken().equals("Bad API request, invalid POST parameters")) {
-                            showToastLong(getActivity(), "Bad API request, invalid POST parameters");
-                        } else showMainScreen();
+                        assert response.body() != null;
+                        App.getPreferencesHelper().saveToken(Objects.requireNonNull(response.body()).string());
+                        switch (App.getPreferencesHelper().getToken()) {
+                            case "Bad API request, use POST request, not GET":
+                                showToastLong(getActivity(), "Bad API request, use POST request, not GET");
+                                break;
+                            case "Bad API request, invalid api_dev_key":
+                                showToastLong(getActivity(), "Bad API request, invalid api_dev_key");
+                                break;
+                            case "Bad API request, invalid login":
+                                showToastLong(getActivity(), "Bad API request, invalid login");
+                                break;
+                            case "Bad API request, account not active":
+                                showToastLong(getActivity(), "Bad API request, account not active");
+                                break;
+                            case "Bad API request, invalid POST parameters":
+                                showToastLong(getActivity(), "Bad API request, invalid POST parameters");
+                                break;
+                            default:
+                                showMainScreen();
+                                break;
+                        }
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -78,11 +88,7 @@ public class LoginFragment extends Fragment {
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 new StandardDialogWindow((StandardDialogWindow.OnClickPositiveButtonListener) () -> {
 
-                }).withPositiveButton(
-                        getActivity(),
-                        getString(R.string.error),
-                        getString(R.string.network_error),
-                        getString(R.string.back));
+                }).withPositiveButton(getActivity(), getString(R.string.error), getString(R.string.network_error), getString(R.string.back));
             }
         });
     }
