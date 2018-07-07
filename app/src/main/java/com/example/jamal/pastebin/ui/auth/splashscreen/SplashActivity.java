@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.auth.login;
+package com.example.jamal.pastebin.ui.auth.splashscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.mvp.auth.login.SplashPresenter;
-import com.example.jamal.pastebin.mvp.auth.login.SplashVIew;
+import com.example.jamal.pastebin.mvp.splahscreen.SplashPresenter;
+import com.example.jamal.pastebin.mvp.splahscreen.SplashVIew;
 
 public class SplashActivity extends AppCompatActivity implements SplashVIew {
 
