@@ -1,9 +1,7 @@
-package com.example.jamal.pastebin.ui.activities;
+package com.example.jamal.pastebin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.jamal.pastebin.R;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

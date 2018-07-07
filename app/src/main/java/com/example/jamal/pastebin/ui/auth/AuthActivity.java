@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.activities;
+package com.example.jamal.pastebin.ui.auth;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.ui.fragments.LoginFragment;
+import com.example.jamal.pastebin.ui.auth.login.LoginFragment;
 
 import static com.example.jamal.pastebin.utils.FragmentUtils.showFragment;
 
