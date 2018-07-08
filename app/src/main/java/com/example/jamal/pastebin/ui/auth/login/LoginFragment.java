@@ -16,7 +16,7 @@ import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.auth.login.LoginPresenter;
 import com.example.jamal.pastebin.mvp.auth.login.LoginView;
-import com.example.jamal.pastebin.ui.MainActivity;
+import com.example.jamal.pastebin.ui.mainscreen.MainActivity;
 import com.example.jamal.pastebin.utils.CommonUtils;
 
 import static com.example.jamal.pastebin.utils.CommonUtils.showToastShort;
@@ -92,12 +92,12 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     private void initViews(@NonNull View view) {
-        userNameEdit = view.findViewById(R.id.edit_login_username);
-        passwordEdit = view.findViewById(R.id.edit_login_password);
+        userNameEdit = view.findViewById(R.id.EditText_login_username);
+        passwordEdit = view.findViewById(R.id.EditText_login_password);
 
-        progressBar = view.findViewById(R.id.progress_login);
+        progressBar = view.findViewById(R.id.ProgressBar_login);
 
-        loginButton = view.findViewById(R.id.button_login);
+        loginButton = view.findViewById(R.id.Button_login);
         loginButton.setOnClickListener(v -> loginPresenter.login(
                 userNameEdit.getText().toString(),
                 passwordEdit.getText().toString()));

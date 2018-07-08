@@ -18,13 +18,13 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry);
+        setContentView(R.layout.activity_auth);
         initViews();
-        showFragment(R.id.frameLayout_entry_container, new LoginFragment(), this);
+        showFragment(R.id.FrameLayout_auth_container, new LoginFragment(), this);
     }
 
     private void initViews() {
-        switchFragmentsButton = findViewById(R.id.button_entry_controlFragments);
+        switchFragmentsButton = findViewById(R.id.Button_Auth_controlFragments);
         switchFragmentsButton.setOnClickListener(v -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://pastebin.com/signup")));
         });
