@@ -12,11 +12,11 @@
         android:roundIcon="@drawable/ic_pastebin"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.MainActivity" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.auth.splashscreen.SplashActivity">
+        <activity android:name=".ui.splashscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

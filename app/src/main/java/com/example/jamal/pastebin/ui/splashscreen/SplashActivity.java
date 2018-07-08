@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.auth.splashscreen;
+package com.example.jamal.pastebin.ui.splashscreen;
 
 import android.content.Intent;
 import android.os.Bundle;

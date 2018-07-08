@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.ui.auth.login.LoginFragment;
 
-import static com.example.jamal.pastebin.utils.FragmentUtils.showFragment;
+import static com.example.jamal.pastebin.utils.RouterUtils.showFragment;
 
 public class AuthActivity extends AppCompatActivity {
 

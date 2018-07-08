@@ -16,7 +16,8 @@ import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.auth.login.LoginPresenter;
 import com.example.jamal.pastebin.mvp.auth.login.LoginView;
-import com.example.jamal.pastebin.MainActivity;
+import com.example.jamal.pastebin.ui.MainActivity;
+import com.example.jamal.pastebin.utils.CommonUtils;
 
 import static com.example.jamal.pastebin.utils.CommonUtils.showToastShort;
 
@@ -55,6 +56,14 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void showMessage(String message) {
+        CommonUtils.showStandartDialogWindowsWithPositiveButton(
+                getActivity(),
+                getString(R.string.error),
+                message,
+                getString(R.string.back),
+                () -> {
+
+                });
         showToastShort(getActivity(), message);
     }
 
