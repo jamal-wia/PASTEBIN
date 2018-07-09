@@ -44,7 +44,8 @@ public class App extends Application {
         PastebinServise pastebinServise = retrofit.create(PastebinServise.class);
 
         // PreferencesHelper
-        PreferencesHelper preferencesHelper = new PreferencesHelper(getSharedPreferences("SharedPrefs", Context.MODE_PRIVATE));
+//        PreferencesHelper preferencesHelper = new PreferencesHelper(getSharedPreferences("SharedPrefs", Context.MODE_PRIVATE));
+        PreferencesHelper preferencesHelper = new PreferencesHelper(getSharedPreferences( "SharedPrefs",Context.MODE_PRIVATE));
 
         dataManager = new DataManager(pastebinServise,preferencesHelper);
     }

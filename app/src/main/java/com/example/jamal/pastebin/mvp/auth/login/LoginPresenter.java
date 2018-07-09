@@ -29,7 +29,8 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                         getView().showProgress(false);
                         if (response.isSuccessful()) {
                             try {
-                                switch (response.body().string()) {
+                                String token = response.body().string();
+                                switch (token) {
                                     case "Bad API request, use POST request, not GET":
                                         getView().showMessage("Bad API request, use POST request, not GET");
                                         break;
@@ -46,7 +47,8 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                                         getView().showMessage("Bad API request, invalid POST parameters");
                                         break;
                                     default:
-                                        dataManager.saveToken(response.body().string());
+                                        dataManager.saveToken(token);
+                                        getView().navigateToMain();
                                         break;
                                 }
                             } catch (Exception e) {

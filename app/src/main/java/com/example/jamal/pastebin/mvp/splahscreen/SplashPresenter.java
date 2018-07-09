@@ -14,7 +14,7 @@ public class SplashPresenter extends MvpPresenter<SplashVIew> {
     }
 
     public void selectLogin() {
-        if (dataManager.getToken() != null) {
+        if (dataManager.getToken() != null && !dataManager.getToken().equals("")) {
             getView().selectLogin(MainActivity.class);
         } else {
             getView().selectLogin(AuthActivity.class);
