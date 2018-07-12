@@ -27,20 +27,6 @@ public class PasteByUser {
     @Element(name = "paste_hits")
     private int hits;
 
-    public PasteByUser(String key, int date, String title, int size, int expireDate,
-                       int pastePrivate, String formatLong, String formatShort, String url, int hits) {
-        this.key = key;
-        this.date = date;
-        this.title = title;
-        this.size = size;
-        this.expireDate = expireDate;
-        this.pastePrivate = pastePrivate;
-        this.formatLong = formatLong;
-        this.formatShort = formatShort;
-        this.url = url;
-        this.hits = hits;
-    }
-
     public String getKey() {
         return key;
     }

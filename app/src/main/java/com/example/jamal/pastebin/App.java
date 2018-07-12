@@ -37,7 +37,7 @@ public class App extends Application {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addConverterFactory(SimpleXmlConverterFactory./*createNonStrict()*/create())
                 .build();
 
         // PastebinServise

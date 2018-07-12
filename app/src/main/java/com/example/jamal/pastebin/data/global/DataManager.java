@@ -5,6 +5,8 @@ import com.example.jamal.pastebin.data.models.PasteByUser;
 import com.example.jamal.pastebin.data.network.PastebinServise;
 import com.example.jamal.pastebin.utils.Constants;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
@@ -24,7 +26,7 @@ public class DataManager {
         return pastebinServise.login(DEV_KEY, login, password);
     }
 
-    public Call<PasteByUser> getListPasteByUser(String apiUserKey) {
+    public Call<ResponseBody> getListPasteByUser(String apiUserKey) {
         return pastebinServise.getListPasteByUser(DEV_KEY, apiUserKey, 100, "list");
     }
 

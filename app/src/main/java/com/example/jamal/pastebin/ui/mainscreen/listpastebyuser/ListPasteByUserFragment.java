@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,11 @@ import android.widget.ProgressBar;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
+import com.example.jamal.pastebin.data.models.PasteByUser;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteByUserPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteByUserView;
+
+import java.util.List;
 
 public class ListPasteByUserFragment extends Fragment implements ListPasteByUserView {
 
@@ -20,6 +24,7 @@ public class ListPasteByUserFragment extends Fragment implements ListPasteByUser
 
     private ProgressBar progressBar;
 
+    private RecyclerView recyclerView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +52,19 @@ public class ListPasteByUserFragment extends Fragment implements ListPasteByUser
     }
 
     @Override
+    public void showListPaste(List<PasteByUser> pasteByUserList) {
+//        recyclerView = new RecyclerView(getActivity());
+        recyclerView.setAdapter(new ListPasteByUserAdapter(pasteByUserList));
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         listPasteByUserPresenter.detachView();
     }
 
     private void initView(View view) {
+        recyclerView= view.findViewById(R.id.RecyclerView_list_paste_user);
         progressBar = view.findViewById(R.id.ProgressBar_listPasteByUser);
     }
 }
