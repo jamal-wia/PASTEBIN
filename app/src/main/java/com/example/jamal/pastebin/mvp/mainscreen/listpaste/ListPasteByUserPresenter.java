@@ -64,7 +64,7 @@ public class ListPasteByUserPresenter extends MvpPresenter<ListPasteByUserView> 
                     }
 
                     getView().showListPaste(pasteByUserList);
-
+                    getView().showProgress(false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
