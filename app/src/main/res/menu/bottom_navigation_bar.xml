@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_paste"
+        android:id="@+id/item_navigationBar_paste"
+        android:title="@string/paste"/>
+
+    <item
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_add_paste"
+        android:id="@+id/item_navigationBar_addPaste"
+        android:title="@string/add_paste"/>
+
+    <item
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_message"
+        android:id="@+id/item_navigationBar_message"
+        android:title="@string/message"/>
+
+    <item
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_account"
+        android:id="@+id/item_navigationBar_account"
+        android:title="@string/account"/>
+</menu>

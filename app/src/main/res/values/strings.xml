@@ -20,4 +20,8 @@
     <string name="network_error">Unknown network error</string>
     <string name="error">Error</string>
     <string name="empty_field">empty field</string>
+    <string name="paste">Paste</string>
+    <string name="add_paste">Add Paste</string>
+    <string name="message">Message</string>
+    <string name="account">Account</string>
 </resources>

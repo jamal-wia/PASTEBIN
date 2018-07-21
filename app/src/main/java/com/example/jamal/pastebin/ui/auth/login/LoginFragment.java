@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
     @Override
     public void showMessage(String message) {
-        CommonUtils.showStandartDialogWindowsWithPositiveButton(
+        CommonUtils.showStandardDialogWindowsWithPositiveButton(
                 getActivity(),
                 getString(R.string.error),
                 message,

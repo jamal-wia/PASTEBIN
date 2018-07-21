@@ -18,5 +18,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.FrameLayout_main_container,
                 new ListPasteByUserFragment(),
                 this);
+
     }
 }

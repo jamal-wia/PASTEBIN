@@ -6,9 +6,6 @@ import android.widget.Toast;
 
 public class CommonUtils {
 
-    private CommonUtils() {
-    }
-
     public static void showToastShort(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
@@ -17,9 +14,11 @@ public class CommonUtils {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
-    public static void showStandartDialogWindowsWithPositiveButton(Context context, String title, String message,
-                                                                   String titleForPositiveButton,
-                                                                   OnClickPositiveButtonListener onClickPositiveButtonListener) {
+    public static void showStandardDialogWindowsWithPositiveButton
+            (Context context, String title, String message,
+             String titleForPositiveButton,
+             OnClickPositiveButtonListener onClickPositiveButtonListener) {
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
@@ -28,9 +27,11 @@ public class CommonUtils {
         dialog.show();
     }
 
-    public static void showStandartDialogWindowsWithNegativeButton(Context context, String title, String message,
-                                                                   String titleForNegativeButton,
-                                                                   OnClickNegativeButtonListener onClickNegativeButtonListener) {
+    public static void showStandartDialogWindowsWithNegativeButton
+            (Context context, String title, String message,
+             String titleForNegativeButton,
+             OnClickNegativeButtonListener onClickNegativeButtonListener) {
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
@@ -39,11 +40,13 @@ public class CommonUtils {
         dialog.show();
     }
 
-    public static void showStandartDialogWindowsWithSecondButton(Context context, String title, String message,
-                                                                 String titleForPositiveButton,
-                                                                 String titleForNegativeButton,
-                                                                 OnClickPositiveButtonListener onClickPositiveButtonListener,
-                                                                 OnClickNegativeButtonListener onClickNegativeButtonListener){
+    public static void showStandartDialogWindowsWithSecondButton
+            (Context context, String title, String message,
+             String titleForPositiveButton,
+             String titleForNegativeButton,
+             OnClickPositiveButtonListener onClickPositiveButtonListener,
+             OnClickNegativeButtonListener onClickNegativeButtonListener) {
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
