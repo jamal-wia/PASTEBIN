@@ -13,13 +13,14 @@ public class RouterUtils {
                 .addToBackStack(null).replace(container, fragment).commit();
     }
 
-    public static void showFragment(int container, Fragment fragment,
-                                    FragmentActivity fragmentActivity) {
+    public static Fragment showFragment(int container, Fragment fragment,
+                                        FragmentActivity fragmentActivity) {
         fragmentActivity.getSupportFragmentManager().beginTransaction()
                 .replace(container, fragment).commit();
+        return fragment;
     }
 
-    public void showActivity(Context context,Class<?> C){
-        context.startActivity(new Intent(context,C));
+    public void showActivity(Context context,Class<?> Cls){
+        context.startActivity(new Intent(context,Cls));
     }
 }

@@ -1,6 +1,4 @@
-package com.example.jamal.pastebin.mvp.mainscreen.listpaste;
-
-import android.util.Log;
+package com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser;
 
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.PasteByUser;
@@ -12,21 +10,19 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
-public class ListPasteByUserPresenter extends MvpPresenter<ListPasteByUserView> {
+public class ByUserPresenter extends MvpPresenter<ByUserView> {
 
     private DataManager dataManager;
     private List<PasteByUser> pasteByUserList = new ArrayList<>();
 
-    public ListPasteByUserPresenter(DataManager dataManager) {
+    public ByUserPresenter(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 

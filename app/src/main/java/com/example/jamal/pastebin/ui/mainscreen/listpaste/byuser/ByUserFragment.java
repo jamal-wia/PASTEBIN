@@ -1,10 +1,9 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpastebyuser;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +13,14 @@ import android.widget.ProgressBar;
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteByUser;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteByUserPresenter;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteByUserView;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserPresenter;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserView;
 
 import java.util.List;
 
-public class ListPasteByUserFragment extends Fragment implements ListPasteByUserView {
+public class ByUserFragment extends Fragment implements ByUserView {
 
-    private ListPasteByUserPresenter listPasteByUserPresenter;
+    private ByUserPresenter byUserPresenter;
 
     private ProgressBar progressBar;
 
@@ -29,8 +28,8 @@ public class ListPasteByUserFragment extends Fragment implements ListPasteByUser
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listPasteByUserPresenter = new ListPasteByUserPresenter(App.getDataManager());
-        listPasteByUserPresenter.attachView(this);
+        byUserPresenter = new ByUserPresenter(App.getDataManager());
+        byUserPresenter.attachView(this);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class ListPasteByUserFragment extends Fragment implements ListPasteByUser
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        listPasteByUserPresenter.showListPaste();
+        byUserPresenter.showListPaste();
     }
 
     @Override
@@ -54,13 +53,13 @@ public class ListPasteByUserFragment extends Fragment implements ListPasteByUser
 
     @Override
     public void showListPaste(List<PasteByUser> pasteByUserList) {
-         recyclerView.setAdapter(new ListPasteByUserAdapter(pasteByUserList));
+         recyclerView.setAdapter(new ByUserAdapter(pasteByUserList));
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        listPasteByUserPresenter.detachView();
+        byUserPresenter.detachView();
     }
 
     private void initView(View view) {

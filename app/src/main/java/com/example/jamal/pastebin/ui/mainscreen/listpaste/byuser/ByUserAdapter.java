@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpastebyuser;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +12,11 @@ import com.example.jamal.pastebin.data.models.PasteByUser;
 
 import java.util.List;
 
-public class ListPasteByUserAdapter extends RecyclerView.Adapter<ListPasteByUserAdapter.PasteViewHolder> {
+public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewHolder> {
 
     private List<PasteByUser> pasteByUserList;
 
-    public ListPasteByUserAdapter(List<PasteByUser> pasteByUserList) {
+    public ByUserAdapter(List<PasteByUser> pasteByUserList) {
         this.pasteByUserList = pasteByUserList;
     }
 

@@ -4,22 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mainscreen.MainActivity">
+    tools:context=".ui.mainscreen.global.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/FrameLayout_main_container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
+        android:orientation="vertical">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/BottomNavigationView_main"
-        style="@style/Widget.Design.BottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorBottomNavigation"
-        app:itemIconTint="@drawable/bottom_navigation_colors"
-        app:itemTextColor="@drawable/bottom_navigation_colors"
-        app:menu="@menu/bottom_navigation_bar" />
+
+        <FrameLayout
+            android:id="@+id/FrameLayout_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/BottomNavigationView_main"
+            style="@style/Widget.Design.BottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorBottomNavigation"
+            app:itemIconTint="@drawable/bottom_navigation_colors"
+            app:itemTextColor="@drawable/bottom_navigation_colors"
+            app:menu="@menu/bottom_navigation_bar" />
+    </LinearLayout>
 </FrameLayout>
