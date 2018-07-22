@@ -16,7 +16,7 @@ public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewH
 
     private List<PasteByUser> pasteByUserList;
 
-    public ByUserAdapter(List<PasteByUser> pasteByUserList) {
+    ByUserAdapter(List<PasteByUser> pasteByUserList) {
         this.pasteByUserList = pasteByUserList;
     }
 
@@ -30,8 +30,7 @@ public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewH
 
     @Override
     public void onBindViewHolder(@NonNull PasteViewHolder holder, int position) {
-        PasteByUser currentPasteByUser=pasteByUserList.get(position);
-        holder.setPasteData(currentPasteByUser);
+        holder.setPasteData(pasteByUserList.get(position));
     }
 
     @Override
@@ -46,7 +45,7 @@ public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewH
         private TextView languageTextView;
         private TextView sizeTextView;
 
-        public PasteViewHolder(View itemView) {
+        PasteViewHolder(View itemView) {
             super(itemView);
             initViews(itemView);
         }

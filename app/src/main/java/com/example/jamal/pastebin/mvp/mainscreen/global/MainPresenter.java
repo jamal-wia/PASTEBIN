@@ -22,4 +22,8 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 break;
         }
     }
+
+    public void startView(){
+        getView().startView(new ListPasteFragment());
+    }
 }

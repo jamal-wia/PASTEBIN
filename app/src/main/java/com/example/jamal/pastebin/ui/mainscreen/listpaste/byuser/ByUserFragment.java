@@ -20,22 +20,22 @@ import java.util.List;
 
 public class ByUserFragment extends Fragment implements ByUserView {
 
-    private ByUserPresenter byUserPresenter;
+    private ByUserPresenter presenter;
 
     private ProgressBar progressBar;
 
     private RecyclerView recyclerView;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        byUserPresenter = new ByUserPresenter(App.getDataManager());
-        byUserPresenter.attachView(this);
+        presenter = new ByUserPresenter(App.getDataManager());
+        presenter.attachView(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_paste_by_user, container, false);
     }
 
@@ -43,7 +43,7 @@ public class ByUserFragment extends Fragment implements ByUserView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        byUserPresenter.showListPaste();
+        presenter.showListPaste();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ByUserFragment extends Fragment implements ByUserView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        byUserPresenter.detachView();
+        presenter.detachView();
     }
 
     private void initView(View view) {

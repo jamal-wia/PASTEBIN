@@ -13,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jamal.pastebin.R;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.global.ListPastePresenter;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.global.ListPasteView;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser.ByUserFragment;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragment;
+import com.example.jamal.pastebin.utils.RouterUtils;
 
-public class ListPasteFragment extends Fragment {
+public class ListPasteFragment extends Fragment implements ListPasteView {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private ListPastePresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,19 +32,38 @@ public class ListPasteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter = new ListPastePresenter();
+        presenter.attachView(this);
+        presenter.startView();
         initViews(view);
     }
 
+    @Override
+    public void showProgress(boolean show) {
+
+    }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+        RouterUtils.showFragment(R.id.ViewPager_listPaste,fragment,getActivity());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.detachView();
+    }
+
     private void initViews(@NonNull View view){
-        toolbar = view.findViewById(R.id.toolbar);
+        Toolbar toolbar = view.findViewById(R.id.Toolbar_listPaste);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(null);
+//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        viewPager = view.findViewById(R.id.viewpager);
+        ViewPager viewPager = view.findViewById(R.id.ViewPager_listPaste);
         setupViewPager(viewPager);
 
-        tabLayout = view.findViewById(R.id.tabs);
+        TabLayout tabLayout = view.findViewById(R.id.TabLayout_listPaste);
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -13,14 +13,15 @@ import static com.example.jamal.pastebin.utils.RouterUtils.showFragment;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
-    private MainPresenter mainPresenter;
+    private MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainPresenter = new MainPresenter();
-        mainPresenter.attachView(this);
+        presenter = new MainPresenter();
+        presenter.attachView(this);
+        presenter.startView();
         initViews();
     }
 
@@ -31,19 +32,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void startFragment(Fragment fragment) {
-        showFragment(R.id.FrameLayout_main_container,fragment,this);
+        showFragment(R.id.FrameLayout_main_container, fragment, this);
+    }
+
+    @Override
+    public void startView(Fragment fragment) {
+        showFragment(R.id.FrameLayout_main_container, fragment, this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mainPresenter.detachView();
+        presenter.detachView();
     }
 
     private void initViews() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigationView_main);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            mainPresenter.onBottomNavigationSelectClick(item.getItemId());
+            presenter.onBottomNavigationSelectClick(item.getItemId());
             return true;
         });
     }

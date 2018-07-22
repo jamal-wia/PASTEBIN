@@ -6,4 +6,6 @@ import com.example.jamal.pastebin.mvp.global.MvpView;
 
 public interface MainView extends MvpView {
     void startFragment(Fragment fragment);
+
+    void startView(Fragment fragment);
 }
