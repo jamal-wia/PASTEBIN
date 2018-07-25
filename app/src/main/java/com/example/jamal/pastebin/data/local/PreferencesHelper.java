@@ -12,7 +12,7 @@ public class PreferencesHelper {
         this.sharedPreferences = sharedPreferences;
     }
 
-    public void saveToken(String token) {
+    public void setToken(String token) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(PREF_TOKEN,token);
         editor.apply();

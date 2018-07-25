@@ -47,7 +47,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                                         getView().showMessage("Bad API request, invalid POST parameters");
                                         break;
                                     default:
-                                        dataManager.saveToken(token);
+                                        dataManager.setToken(token);
                                         getView().navigateToMain();
                                         break;
                                 }

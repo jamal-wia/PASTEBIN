@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "paste")
-public class PasteByUser {
+public class Paste {
 
     @Element(name = "paste_key")
     private String key;

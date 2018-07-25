@@ -12,9 +12,10 @@ import android.widget.ProgressBar;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.data.models.PasteByUser;
+import com.example.jamal.pastebin.data.models.Paste;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserView;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.PasteAdapter;
 
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class ByUserFragment extends Fragment implements ByUserView {
     }
 
     @Override
-    public void showListPaste(List<PasteByUser> pasteByUserList) {
-         recyclerView.setAdapter(new ByUserAdapter(pasteByUserList));
+    public void showListPaste(List<Paste> pasteList) {
+         recyclerView.setAdapter(new PasteAdapter(pasteList));
     }
 
     @Override

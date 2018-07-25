@@ -1,7 +1,7 @@
 package com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser;
 
 import com.example.jamal.pastebin.data.global.DataManager;
-import com.example.jamal.pastebin.data.models.PasteByUser;
+import com.example.jamal.pastebin.data.models.Paste;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 
 import org.simpleframework.xml.core.Persister;
@@ -20,7 +20,6 @@ import retrofit2.Response;
 public class ByUserPresenter extends MvpPresenter<ByUserView> {
 
     private DataManager dataManager;
-    private List<PasteByUser> pasteByUserList = new ArrayList<>();
 
     public ByUserPresenter(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -47,20 +46,21 @@ public class ByUserPresenter extends MvpPresenter<ByUserView> {
 
                     pasteList.remove(pasteList.size() - 1);
 
-                    List<PasteByUser> pasteByUserList = new ArrayList<>();
+                    List<Paste> pasteByUserList = new ArrayList<>();
 
                     for (int i = 0; i < pasteList.size(); i++) {
                         Reader reader = new StringReader(pasteList.get(i));
                         Persister serializer = new Persister();
                         try {
-                            pasteByUserList.add(serializer.read(PasteByUser.class, reader, false));
+                            pasteByUserList.add(serializer.read(Paste.class, reader, false));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
 
-                    getView().showListPaste(pasteByUserList);
-                    getView().showProgress(false);
+                    if (getView() != null) getView().showListPaste(pasteByUserList);
+                    if (getView() != null) getView().showProgress(false);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

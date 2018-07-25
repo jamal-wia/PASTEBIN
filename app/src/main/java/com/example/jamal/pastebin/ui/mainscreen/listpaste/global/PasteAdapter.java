@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste.global;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,34 +8,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.data.models.PasteByUser;
+import com.example.jamal.pastebin.data.models.Paste;
 
 import java.util.List;
 
-public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewHolder> {
+public class PasteAdapter extends RecyclerView.Adapter<PasteAdapter.PasteViewHolder> {
 
-    private List<PasteByUser> pasteByUserList;
+    private List<Paste> pasteList;
 
-    ByUserAdapter(List<PasteByUser> pasteByUserList) {
-        this.pasteByUserList = pasteByUserList;
+    public PasteAdapter(List<Paste> pasteList) {
+        this.pasteList = pasteList;
     }
 
     @NonNull
     @Override
     public PasteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.paste_by_user_item,
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_paste_by_user,
                 parent, false);
         return new PasteViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PasteViewHolder holder, int position) {
-        holder.setPasteData(pasteByUserList.get(position));
+        holder.setPasteData(pasteList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return pasteByUserList.size();
+        return pasteList.size();
     }
 
     class PasteViewHolder extends RecyclerView.ViewHolder {
@@ -57,7 +57,7 @@ public class ByUserAdapter extends RecyclerView.Adapter<ByUserAdapter.PasteViewH
             sizeTextView= itemView.findViewById(R.id.TextView_paste_user_item_size);
         }
 
-        private void setPasteData(PasteByUser pasteData){
+        private void setPasteData(Paste pasteData){
             titleTextView.setText(String.valueOf(pasteData.getTitle()));
             privateTextView.setText(String.valueOf(pasteData.getPastePrivate()));
             languageTextView.setText(String.valueOf(pasteData.getFormatLong()));
