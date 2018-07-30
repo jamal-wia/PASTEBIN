@@ -2,6 +2,7 @@ package com.example.jamal.pastebin.mvp.mainscreen.global;
 
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
+import com.example.jamal.pastebin.ui.mainscreen.createpaste.CreatePasteFragment;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.ListPasteFragment;
 
 public class MainPresenter extends MvpPresenter<MainView> {
@@ -12,7 +13,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 getView().startFragment(new ListPasteFragment());
                 break;
             case R.id.item_navigationBar_addPaste:
-//                getView().startFragment(new ListPasteFragment());
+                getView().startFragment(new CreatePasteFragment());
                 break;
             case R.id.item_navigationBar_message:
 //                getView().startFragment(new ListPasteFragment());

@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity implements SplashVIew {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(this, C));
             finish();
-        }, 500);
+        }, 1000);
     }
 
     @Override

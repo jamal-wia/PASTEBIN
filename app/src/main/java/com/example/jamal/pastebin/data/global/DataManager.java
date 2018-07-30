@@ -2,6 +2,7 @@ package com.example.jamal.pastebin.data.global;
 
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
 import com.example.jamal.pastebin.data.network.PastebinServise;
+import com.example.jamal.pastebin.utils.Constants;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,6 +32,13 @@ public class DataManager {
 
     public Call<ResponseBody> getListTrendingPaste() {
         return pastebinServise.getListTrendingPaste(DEV_KEY, PASTE_PARAM_TRENDS);
+    }
+
+    public Call<ResponseBody> createPaste(String apiPasteName, String apiPasteFormat,
+                                          int apiPastePrivate, String apiPasteExpireDate,
+                                          String apiPasteCode) {
+        return pastebinServise.createPaste(preferencesHelper.getToken(), apiPasteName, apiPasteFormat,
+                apiPastePrivate, apiPasteExpireDate, "paste", DEV_KEY, apiPasteCode);
     }
 
     public void setToken(String token) {
