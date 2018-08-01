@@ -1,5 +1,7 @@
 package com.example.jamal.pastebin.data.network;
 
+import com.example.jamal.pastebin.data.models.User;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -43,4 +45,11 @@ public interface PastebinServise {
             @Field("api_option") String apiOption,
             @Field("api_dev_key") String apiDevKey,
             @Field("api_paste_code") String apiPasteCode);
+
+    @FormUrlEncoded
+    @POST("api_post.php")
+    Call<ResponseBody> infoUser(
+            @Field("api_dev_key") String apiDevKey,
+            @Field("api_user_key") String apiUserKey,
+            @Field("api_option") String apiOption);
 }

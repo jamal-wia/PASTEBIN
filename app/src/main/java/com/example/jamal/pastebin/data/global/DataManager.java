@@ -1,6 +1,7 @@
 package com.example.jamal.pastebin.data.global;
 
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
+import com.example.jamal.pastebin.data.models.User;
 import com.example.jamal.pastebin.data.network.PastebinServise;
 import com.example.jamal.pastebin.utils.Constants;
 
@@ -39,6 +40,10 @@ public class DataManager {
                                           String apiPasteCode) {
         return pastebinServise.createPaste(preferencesHelper.getToken(), apiPasteName, apiPasteFormat,
                 apiPastePrivate, apiPasteExpireDate, "paste", DEV_KEY, apiPasteCode);
+    }
+
+    public Call<ResponseBody> infoUser() {
+        return pastebinServise.infoUser(DEV_KEY, preferencesHelper.getToken(), "userdetails");
     }
 
     public void setToken(String token) {
