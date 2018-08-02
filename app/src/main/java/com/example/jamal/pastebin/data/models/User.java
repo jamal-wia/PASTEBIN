@@ -23,7 +23,7 @@ public class User {
     @Element(name = "user_location")
     private String location;
     @Element(name = "user_account_type")
-    private int accountType;
+    private String accountType;
 
     public String getName() {
         return name;
@@ -57,7 +57,11 @@ public class User {
         return location;
     }
 
-    public int getAccountType() {
+    public String getAccountType() {
         return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jamal.pastebin.mvp.mainscreen.account;
 
+import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.User;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
@@ -28,16 +29,16 @@ public class AccountPresenter extends MvpPresenter<AccountView> {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    String answer = null;
-                    User user;
+                    String answer;
+                    User user = null;
 
                     try {
                         answer = response.body().string();
                         user = parseAnswer(answer);
-                        String s = "";
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    getView().showInfoUser(user);
                 }
             }
 
@@ -59,6 +60,14 @@ public class AccountPresenter extends MvpPresenter<AccountView> {
         } catch (Exception e) {
             e.printStackTrace();
             user = parseWrongAnswer(answer);
+        }
+
+        if (user.getAccountType().equals("1")) {
+            user.setAccountType("Pro");
+            getView().editColorType(R.color.colorRedTypeAccount);
+        } else {
+            user.setAccountType("Free");
+            getView().editColorType(R.color.colorPrimaryDark);
         }
 
         return user;
