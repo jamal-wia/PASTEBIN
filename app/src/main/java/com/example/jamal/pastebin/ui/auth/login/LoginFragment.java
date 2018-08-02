@@ -16,7 +16,7 @@ import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.auth.login.LoginPresenter;
 import com.example.jamal.pastebin.mvp.auth.login.LoginView;
-import com.example.jamal.pastebin.ui.mainscreen.global.MainActivity;
+import com.example.jamal.pastebin.ui.mainscreen.main.MainActivity;
 import com.example.jamal.pastebin.utils.CommonUtils;
 
 import static com.example.jamal.pastebin.utils.CommonUtils.showToastShort;

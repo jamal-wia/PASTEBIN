@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.mvp.mainscreen.global;
+package com.example.jamal.pastebin.mvp.mainscreen.main;
 
 import android.support.v4.app.Fragment;
 

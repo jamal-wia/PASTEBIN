@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser;
+package com.example.jamal.pastebin.mvp.mainscreen.account.listpaste;
 
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.Paste;
@@ -17,11 +17,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ByUserPresenter extends MvpPresenter<ByUserView> {
+public class MyPastePresenter extends MvpPresenter<MyPasteView> {
 
     private DataManager dataManager;
 
-    public ByUserPresenter(DataManager dataManager) {
+    public MyPastePresenter(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 

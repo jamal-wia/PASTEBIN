@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.global;
+package com.example.jamal.pastebin.ui.mainscreen.main;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.mvp.mainscreen.global.MainPresenter;
-import com.example.jamal.pastebin.mvp.mainscreen.global.MainView;
+import com.example.jamal.pastebin.mvp.mainscreen.main.MainPresenter;
+import com.example.jamal.pastebin.mvp.mainscreen.main.MainView;
 
 import static com.example.jamal.pastebin.utils.RouterUtils.showFragment;
 

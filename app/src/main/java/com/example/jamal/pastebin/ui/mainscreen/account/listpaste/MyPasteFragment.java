@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser;
+package com.example.jamal.pastebin.ui.mainscreen.account.listpaste;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,15 +13,15 @@ import android.widget.ProgressBar;
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.Paste;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserPresenter;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.byuser.ByUserView;
+import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPastePresenter;
+import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPasteView;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.PasteAdapter;
 
 import java.util.List;
 
-public class ByUserFragment extends Fragment implements ByUserView {
+public class MyPasteFragment extends Fragment implements MyPasteView {
 
-    private ByUserPresenter presenter;
+    private MyPastePresenter presenter;
 
     private ProgressBar progressBar;
 
@@ -30,7 +30,7 @@ public class ByUserFragment extends Fragment implements ByUserView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new ByUserPresenter(App.getDataManager());
+        presenter = new MyPastePresenter(App.getDataManager());
         presenter.attachView(this);
     }
 

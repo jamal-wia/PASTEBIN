@@ -3,7 +3,6 @@ package com.example.jamal.pastebin.data.models;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "paste")
 public class Paste {
 
     @Element(name = "paste_key")

@@ -20,7 +20,7 @@ public class RouterUtils {
         return fragment;
     }
 
-    public void showActivity(Context context,Class<?> Cls){
+    public static void showActivity(Context context,Class<?> Cls){
         context.startActivity(new Intent(context,Cls));
     }
 }

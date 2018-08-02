@@ -1,6 +1,6 @@
 package com.example.jamal.pastebin.mvp.splahscreen;
 
-import com.example.jamal.pastebin.ui.mainscreen.global.MainActivity;
+import com.example.jamal.pastebin.ui.mainscreen.main.MainActivity;
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 import com.example.jamal.pastebin.ui.auth.AuthActivity;

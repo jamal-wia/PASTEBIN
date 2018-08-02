@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.User;
 import com.example.jamal.pastebin.mvp.mainscreen.account.AccountPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.account.AccountView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser.ByUserFragment;
+import com.example.jamal.pastebin.ui.mainscreen.account.listpaste.MyPasteFragment;
 import com.example.jamal.pastebin.utils.RouterUtils;
 import com.squareup.picasso.Picasso;
 
@@ -86,6 +85,6 @@ public class AccountFragment extends Fragment implements AccountView {
         locationTextView = view.findViewById(R.id.TextView_account_location);
         typeTextView = view.findViewById(R.id.TextView_account_type);
 
-        RouterUtils.showFragment(R.id.FrameLayout_account_container,new ByUserFragment(),getActivity());
+        RouterUtils.showFragment(R.id.FrameLayout_account_container,new MyPasteFragment(),getActivity());
     }
 }

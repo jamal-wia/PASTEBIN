@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.mvp.mainscreen.global;
+package com.example.jamal.pastebin.mvp.mainscreen.main;
 
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;

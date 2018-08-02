@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.global.ListPastePresenter;
-import com.example.jamal.pastebin.mvp.mainscreen.listpaste.global.ListPasteView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.byuser.ByUserFragment;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPastePresenter;
+import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteView;
+import com.example.jamal.pastebin.ui.mainscreen.account.listpaste.MyPasteFragment;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragment;
 import com.example.jamal.pastebin.utils.RouterUtils;
 
@@ -69,7 +69,7 @@ public class ListPasteFragment extends Fragment implements ListPasteView {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new ByUserFragment(), "My Paste");
+        adapter.addFragment(new MyPasteFragment(), "Save Paste");
         adapter.addFragment(new TrendingFragment(), "Trending");
         viewPager.setAdapter(adapter);
     }
