@@ -1,8 +1,11 @@
 package com.example.jamal.pastebin.ui.mainscreen.main;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.jamal.pastebin.R;

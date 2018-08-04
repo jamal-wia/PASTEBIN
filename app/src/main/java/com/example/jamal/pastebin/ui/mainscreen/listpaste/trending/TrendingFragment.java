@@ -1,5 +1,7 @@
 package com.example.jamal.pastebin.ui.mainscreen.listpaste.trending;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +17,7 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.PasteAdapter;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.adapters.PasteAdapter;
 
 import java.util.List;
 
@@ -49,7 +51,25 @@ public class TrendingFragment extends Fragment implements TrendingView {
 
     @Override
     public void showListTrendingPaste(List<PasteNetwork> pasteNetworks) {
-        listTrendingPasteRecyclerView.setAdapter(new PasteAdapter(pasteNetworks));
+        PasteAdapter pasteAdapter = new PasteAdapter(pasteNetworks);
+        pasteAdapter.setItemLongClickListener(pasteRoom -> {
+            String[] items = {"Save", "Share"};
+            AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                    .setTitle("Selected action")
+                    .setItems(items, (dialog, which) -> {
+                        switch (which) {
+                            case 0:
+                                System.out.print("0");
+                                presenter.insetPaste(pasteRoom);
+                                break;
+                            case 1:
+                                System.out.print("1");
+                                break;
+                        }
+                    }).create();
+            alertDialog.show();
+        });
+        listTrendingPasteRecyclerView.setAdapter(pasteAdapter);
     }
 
     @Override

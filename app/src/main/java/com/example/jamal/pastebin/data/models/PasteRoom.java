@@ -19,8 +19,8 @@ public class PasteRoom {
     private String url;
     private int hits;
 
-    public PasteRoom(int id, String key, int date, String title, int size, int expireDate, int pastePrivate, String formatLong, String formatShort, String url, int hits) {
-        this.id = id;
+    public PasteRoom(/*int id,*/ String key, int date, String title, int size, int expireDate, int pastePrivate, String formatLong, String formatShort, String url, int hits) {
+//        this.id = id;
         this.key = key;
         this.date = date;
         this.title = title;
@@ -32,7 +32,7 @@ public class PasteRoom {
         this.url = url;
         this.hits = hits;
     }
-
+//
     public int getId() {
         return id;
     }
@@ -75,5 +75,9 @@ public class PasteRoom {
 
     public int getHits() {
         return hits;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

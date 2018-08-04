@@ -11,7 +11,7 @@ public class SavedPastePresenter extends MvpPresenter<SavedPasteView> {
         this.dataManager = dataManager;
     }
 
-    public void showListSaved(){
-
+    public void showListSaved() {
+        if (getView() != null) getView().showListSaved(dataManager.getAllPaste());
     }
 }

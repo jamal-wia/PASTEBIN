@@ -44,7 +44,7 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
 
     @Override
     public void showListSaved(List<PasteRoom> pasteRooms) {
-
+        recyclerView.setAdapter(new SavedPasteAdapter(pasteRooms));
     }
 
     @Override

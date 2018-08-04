@@ -2,6 +2,7 @@ package com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending;
 
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 
 import org.simpleframework.xml.core.Persister;
@@ -74,5 +75,9 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
 
             }
         });
+    }
+
+    public void insetPaste(PasteRoom paste){
+        dataManager.insertPaste(paste);
     }
 }

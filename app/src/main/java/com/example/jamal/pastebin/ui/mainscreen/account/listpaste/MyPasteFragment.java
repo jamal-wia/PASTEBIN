@@ -15,7 +15,7 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPasteView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.PasteAdapter;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.adapters.PasteAdapter;
 
 import java.util.List;
 
