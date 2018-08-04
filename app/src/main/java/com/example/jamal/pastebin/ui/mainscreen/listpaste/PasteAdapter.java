@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpaste.global;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.data.models.Paste;
+import com.example.jamal.pastebin.data.models.PasteNetwork;
 
 import java.util.List;
 
 public class PasteAdapter extends RecyclerView.Adapter<PasteAdapter.PasteViewHolder> {
 
-    private List<Paste> pasteList;
+    private List<PasteNetwork> pasteNetworkList;
 
-    public PasteAdapter(List<Paste> pasteList) {
-        this.pasteList = pasteList;
+    public PasteAdapter(List<PasteNetwork> pasteNetworkList) {
+        this.pasteNetworkList = pasteNetworkList;
     }
 
     @NonNull
@@ -30,12 +30,12 @@ public class PasteAdapter extends RecyclerView.Adapter<PasteAdapter.PasteViewHol
 
     @Override
     public void onBindViewHolder(@NonNull PasteViewHolder holder, int position) {
-        holder.setPasteData(pasteList.get(position));
+        holder.setPasteData(pasteNetworkList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return pasteList.size();
+        return pasteNetworkList.size();
     }
 
     class PasteViewHolder extends RecyclerView.ViewHolder {
@@ -57,11 +57,11 @@ public class PasteAdapter extends RecyclerView.Adapter<PasteAdapter.PasteViewHol
             sizeTextView= itemView.findViewById(R.id.TextView_paste_user_item_size);
         }
 
-        private void setPasteData(Paste pasteData){
-            titleTextView.setText(String.valueOf(pasteData.getTitle()));
-            privateTextView.setText(String.valueOf(pasteData.getPastePrivate()));
-            languageTextView.setText(String.valueOf(pasteData.getFormatLong()));
-            sizeTextView.setText(String.valueOf(pasteData.getSize()));
+        private void setPasteData(PasteNetwork pasteNetworkData){
+            titleTextView.setText(String.valueOf(pasteNetworkData.getTitle()));
+            privateTextView.setText(String.valueOf(pasteNetworkData.getPastePrivate()));
+            languageTextView.setText(String.valueOf(pasteNetworkData.getFormatLong()));
+            sizeTextView.setText(String.valueOf(pasteNetworkData.getSize()));
         }
     }
 }

@@ -1,10 +1,13 @@
 package com.example.jamal.pastebin;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.example.jamal.pastebin.data.global.DataManager;
+import com.example.jamal.pastebin.data.local.Database;
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.data.network.PastebinServise;
 
 import okhttp3.OkHttpClient;
@@ -44,10 +47,12 @@ public class App extends Application {
         PastebinServise pastebinServise = retrofit.create(PastebinServise.class);
 
         // PreferencesHelper
-//        PreferencesHelper preferencesHelper = new PreferencesHelper(getSharedPreferences("SharedPrefs", Context.MODE_PRIVATE));
-        PreferencesHelper preferencesHelper = new PreferencesHelper(getSharedPreferences( "SharedPrefs",Context.MODE_PRIVATE));
+        PreferencesHelper preferencesHelper =
+                new PreferencesHelper(getSharedPreferences( "SharedPrefs",Context.MODE_PRIVATE));
 
-        dataManager = new DataManager(pastebinServise,preferencesHelper);
+        Database database = Room.databaseBuilder(this, Database.class,"database").build();
+
+        dataManager = new DataManager(pastebinServise,preferencesHelper,database);
     }
 
     public static DataManager getDataManager() {

@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.data.models.Paste;
+import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPasteView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.PasteAdapter;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.PasteAdapter;
 
 import java.util.List;
 
@@ -53,8 +53,8 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
     }
 
     @Override
-    public void showListPaste(List<Paste> pasteList) {
-         recyclerView.setAdapter(new PasteAdapter(pasteList));
+    public void showListPaste(List<PasteNetwork> pasteNetworkList) {
+         recyclerView.setAdapter(new PasteAdapter(pasteNetworkList));
     }
 
     @Override

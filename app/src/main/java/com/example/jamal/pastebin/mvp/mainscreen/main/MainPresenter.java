@@ -4,7 +4,7 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 import com.example.jamal.pastebin.ui.mainscreen.account.AccountFragment;
 import com.example.jamal.pastebin.ui.mainscreen.createpaste.CreatePasteFragment;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.ListPasteFragment;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.ListPasteFragment;
 
 public class MainPresenter extends MvpPresenter<MainView> {
 

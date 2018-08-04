@@ -1,7 +1,7 @@
 package com.example.jamal.pastebin.mvp.mainscreen.account.listpaste;
 
 import com.example.jamal.pastebin.data.global.DataManager;
-import com.example.jamal.pastebin.data.models.Paste;
+import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 
 import org.simpleframework.xml.core.Persister;
@@ -46,19 +46,19 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
 
                     pasteList.remove(pasteList.size() - 1);
 
-                    List<Paste> pasteByUserList = new ArrayList<>();
+                    List<PasteNetwork> pasteNetworkByUserList = new ArrayList<>();
 
                     for (int i = 0; i < pasteList.size(); i++) {
                         Reader reader = new StringReader(pasteList.get(i));
                         Persister serializer = new Persister();
                         try {
-                            pasteByUserList.add(serializer.read(Paste.class, reader, false));
+                            pasteNetworkByUserList.add(serializer.read(PasteNetwork.class, reader, false));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
 
-                    if (getView() != null) getView().showListPaste(pasteByUserList);
+                    if (getView() != null) getView().showListPaste(pasteNetworkByUserList);
                     if (getView() != null) getView().showProgress(false);
 
                 } catch (IOException e) {

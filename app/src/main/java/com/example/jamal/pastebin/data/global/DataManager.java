@@ -1,9 +1,13 @@
 package com.example.jamal.pastebin.data.global;
 
+import android.os.AsyncTask;
+
+import com.example.jamal.pastebin.data.local.Database;
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
-import com.example.jamal.pastebin.data.models.User;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.data.network.PastebinServise;
-import com.example.jamal.pastebin.utils.Constants;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,10 +20,13 @@ public class DataManager {
 
     private PastebinServise pastebinServise;
     private PreferencesHelper preferencesHelper;
+    private Database database;
 
-    public DataManager(PastebinServise pastebinServise, PreferencesHelper preferencesHelper) {
+    public DataManager(PastebinServise pastebinServise, PreferencesHelper preferencesHelper,
+                       Database database) {
         this.pastebinServise = pastebinServise;
         this.preferencesHelper = preferencesHelper;
+        this.database = database;
     }
 
     public Call<ResponseBody> login(String login, String password) {
@@ -52,5 +59,73 @@ public class DataManager {
 
     public String getToken() {
         return preferencesHelper.getToken();
+    }
+
+    public List<PasteRoom> getAllPaste() {
+        return new GetAllPaste().doInBackground();
+    }
+
+    public PasteRoom getPaste(int id) {
+        return new GetPaste(id).doInBackground();
+    }
+
+    public void insertPaste(PasteRoom paste) {
+        new InsertPaste(paste).doInBackground();
+    }
+
+    public void deletePaste(PasteRoom paste) {
+        new DeletePaste(paste).doInBackground();
+    }
+
+    private class GetAllPaste extends AsyncTask<Void, Void, List<PasteRoom>> {
+
+        @Override
+        protected List<PasteRoom> doInBackground(Void... voids) {
+            return database.pasteDao().getAll();
+        }
+    }
+
+    private class GetPaste extends AsyncTask<Void, Void, PasteRoom> {
+
+        private int id;
+
+        private GetPaste(int id) {
+            this.id = id;
+        }
+
+        @Override
+        protected PasteRoom doInBackground(Void... voids) {
+            return database.pasteDao().getById(id);
+        }
+    }
+
+    private class InsertPaste extends AsyncTask<Void, Void, Void> {
+
+        private PasteRoom pasteRoom;
+
+        private InsertPaste(PasteRoom pasteRoom) {
+            this.pasteRoom = pasteRoom;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            database.pasteDao().insert(pasteRoom);
+            return null;
+        }
+    }
+
+    private class DeletePaste extends AsyncTask<Void,Void,Void> {
+
+        private PasteRoom pasteRoom;
+
+        private DeletePaste(PasteRoom pasteRoom) {
+            this.pasteRoom = pasteRoom;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            database.pasteDao().delete(pasteRoom);
+            return null;
+        }
     }
 }

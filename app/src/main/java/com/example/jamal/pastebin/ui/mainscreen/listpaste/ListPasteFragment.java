@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpaste.global;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +16,8 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteView;
 import com.example.jamal.pastebin.ui.mainscreen.account.listpaste.MyPasteFragment;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.ViewPagerAdapter;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.saved.SavedPasteFragment;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragment;
 import com.example.jamal.pastebin.utils.RouterUtils;
 
@@ -58,7 +60,6 @@ public class ListPasteFragment extends Fragment implements ListPasteView {
         Toolbar toolbar = view.findViewById(R.id.Toolbar_listPaste);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(null);
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewPager viewPager = view.findViewById(R.id.ViewPager_listPaste);
         setupViewPager(viewPager);
@@ -69,7 +70,7 @@ public class ListPasteFragment extends Fragment implements ListPasteView {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new MyPasteFragment(), "Save Paste");
+        adapter.addFragment(new SavedPasteFragment(), "Save Paste");
         adapter.addFragment(new TrendingFragment(), "Trending");
         viewPager.setAdapter(adapter);
     }

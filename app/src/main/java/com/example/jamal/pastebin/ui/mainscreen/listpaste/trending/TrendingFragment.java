@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
-import com.example.jamal.pastebin.data.models.Paste;
+import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.global.PasteAdapter;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.PasteAdapter;
 
 import java.util.List;
 
@@ -48,8 +48,8 @@ public class TrendingFragment extends Fragment implements TrendingView {
     }
 
     @Override
-    public void showListTrendingPaste(List<Paste> pastes) {
-        listTrendingPasteRecyclerView.setAdapter(new PasteAdapter(pastes));
+    public void showListTrendingPaste(List<PasteNetwork> pasteNetworks) {
+        listTrendingPasteRecyclerView.setAdapter(new PasteAdapter(pasteNetworks));
     }
 
     @Override

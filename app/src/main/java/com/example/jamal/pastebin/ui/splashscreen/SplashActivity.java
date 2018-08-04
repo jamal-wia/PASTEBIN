@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.splahscreen.SplashPresenter;
 import com.example.jamal.pastebin.mvp.splahscreen.SplashVIew;
 
