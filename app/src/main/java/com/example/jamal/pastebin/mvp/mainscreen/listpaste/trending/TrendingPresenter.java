@@ -80,4 +80,8 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
     public void insetPaste(PasteRoom paste){
         dataManager.insertPaste(paste);
     }
+
+    public void showDialogWindow(PasteRoom pasteRoom) {
+    getView().showDialogWindow(pasteRoom);
+    }
 }

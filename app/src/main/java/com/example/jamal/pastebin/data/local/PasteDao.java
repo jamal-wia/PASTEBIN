@@ -20,7 +20,7 @@ public interface PasteDao {
     @Query("SELECT * FROM  PasteRoom WHERE  id = :id")
     PasteRoom getById(int id);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert (PasteRoom paste);
 
     @Update()

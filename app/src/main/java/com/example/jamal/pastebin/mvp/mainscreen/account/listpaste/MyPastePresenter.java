@@ -2,6 +2,7 @@ package com.example.jamal.pastebin.mvp.mainscreen.account.listpaste;
 
 import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
 
 import org.simpleframework.xml.core.Persister;
@@ -52,7 +53,8 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
                         Reader reader = new StringReader(pasteList.get(i));
                         Persister serializer = new Persister();
                         try {
-                            pasteNetworkByUserList.add(serializer.read(PasteNetwork.class, reader, false));
+                            pasteNetworkByUserList.add(serializer.read(PasteNetwork.class, reader,
+                                    false));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -71,5 +73,13 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
 
             }
         });
+    }
+
+    public void showDialogWindow(PasteRoom paste){
+        getView().showDialogWindow(paste);
+    }
+
+    public void insertPaste(PasteRoom paste){
+        dataManager.insertPaste(paste);
     }
 }

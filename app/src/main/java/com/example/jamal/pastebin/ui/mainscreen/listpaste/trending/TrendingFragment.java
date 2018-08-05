@@ -1,7 +1,7 @@
 package com.example.jamal.pastebin.ui.mainscreen.listpaste.trending;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,9 +15,9 @@ import android.widget.ProgressBar;
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.adapters.PasteAdapter;
 
 import java.util.List;
 
@@ -51,25 +51,31 @@ public class TrendingFragment extends Fragment implements TrendingView {
 
     @Override
     public void showListTrendingPaste(List<PasteNetwork> pasteNetworks) {
-        PasteAdapter pasteAdapter = new PasteAdapter(pasteNetworks);
-        pasteAdapter.setItemLongClickListener(pasteRoom -> {
-            String[] items = {"Save", "Share"};
-            AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Selected action")
-                    .setItems(items, (dialog, which) -> {
-                        switch (which) {
-                            case 0:
-                                System.out.print("0");
-                                presenter.insetPaste(pasteRoom);
-                                break;
-                            case 1:
-                                System.out.print("1");
-                                break;
-                        }
-                    }).create();
-            alertDialog.show();
-        });
-        listTrendingPasteRecyclerView.setAdapter(pasteAdapter);
+        PasteTrendingAdapter pasteTrendingAdapter = new PasteTrendingAdapter(pasteNetworks);
+        pasteTrendingAdapter.setItemLongClickListener(pasteRoom ->
+                presenter.showDialogWindow(pasteRoom));
+        listTrendingPasteRecyclerView.setAdapter(pasteTrendingAdapter);
+    }
+
+    @Override
+    public void showDialogWindow(PasteRoom pasteRoom) {
+        String[] items = {"Save", "Share"};
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle("Selected action")
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            presenter.insetPaste(pasteRoom);
+                            break;
+                        case 1:
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, pasteRoom.getUrl());
+                            shareIntent.setType("text/plain");
+                            startActivity(shareIntent);
+                            break;
+                    }
+                }).create();
+        alertDialog.show();
     }
 
     @Override

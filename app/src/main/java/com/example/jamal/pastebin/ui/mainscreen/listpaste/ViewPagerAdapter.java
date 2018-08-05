@@ -1,4 +1,4 @@
-package com.example.jamal.pastebin.ui.mainscreen.listpaste.adapters;
+package com.example.jamal.pastebin.ui.mainscreen.listpaste;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

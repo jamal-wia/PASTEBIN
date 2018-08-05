@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.ListPasteView;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.adapters.ViewPagerAdapter;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.saved.SavedPasteFragment;
 import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragment;
 import com.example.jamal.pastebin.utils.RouterUtils;
