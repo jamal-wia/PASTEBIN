@@ -4,6 +4,7 @@ import com.example.jamal.pastebin.data.global.DataManager;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
+import com.example.jamal.pastebin.utils.Parse;
 
 import org.simpleframework.xml.core.Persister;
 
@@ -34,36 +35,10 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
                 if (response.isSuccessful()) {
                     try {
                         String answer = response.body().string();
-
-                        String regex = "</paste>";
-                        String[] sArr = answer.split(regex);
-
-                        for (int i = 0; i < sArr.length; i++) {
-                            sArr[i] += regex;
+                        if (getView() != null) {
+                            getView().showListTrendingPaste(Parse.parsePaste(answer));
+                            getView().showProgress(false);
                         }
-
-                        List<String> pasteList = new ArrayList<>();
-
-                        for (int i = 0; i < sArr.length; i++) {
-                            pasteList.add(sArr[i]);
-                        }
-
-                        pasteList.remove(pasteList.size() - 1);
-
-                        List<PasteNetwork> pasteNetworkTrendingList = new ArrayList<>();
-
-                        for (int i = 0; i < pasteList.size(); i++) {
-                            Reader reader = new StringReader(pasteList.get(i));
-                            Persister serializer = new Persister();
-                            try {
-                                pasteNetworkTrendingList.add(serializer.read(PasteNetwork.class, reader, false));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        if (getView() != null) getView().showListTrendingPaste(pasteNetworkTrendingList);
-                        if (getView() != null) getView().showProgress(false);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -77,11 +52,11 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
         });
     }
 
-    public void insetPaste(PasteRoom paste){
+    public void insetPaste(PasteRoom paste) {
         dataManager.insertPaste(paste);
     }
 
     public void showDialogWindow(PasteRoom pasteRoom) {
-    getView().showDialogWindow(pasteRoom);
+        getView().showDialogWindow(pasteRoom);
     }
 }
