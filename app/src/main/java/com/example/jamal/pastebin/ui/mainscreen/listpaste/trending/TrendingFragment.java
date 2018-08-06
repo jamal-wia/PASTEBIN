@@ -2,6 +2,7 @@ package com.example.jamal.pastebin.ui.mainscreen.listpaste.trending;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -72,6 +73,10 @@ public class TrendingFragment extends Fragment implements TrendingView {
                             shareIntent.putExtra(Intent.EXTRA_TEXT, pasteRoom.getUrl());
                             shareIntent.setType("text/plain");
                             startActivity(shareIntent);
+                            break;
+                        case 2:
+                            Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pasteRoom.getUrl()));
+                            startActivity(viewIntent);
                             break;
                     }
                 }).create();
