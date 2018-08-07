@@ -15,6 +15,7 @@ import retrofit2.Call;
 
 import static com.example.jamal.pastebin.utils.Constants.DEV_KEY;
 import static com.example.jamal.pastebin.utils.Constants.PASTE_PARAM_LIST;
+import static com.example.jamal.pastebin.utils.Constants.PASTE_PARAM_SHOW_PASTE;
 import static com.example.jamal.pastebin.utils.Constants.PASTE_PARAM_TRENDS;
 
 public class DataManager {
@@ -37,6 +38,11 @@ public class DataManager {
     public Call<ResponseBody> getListPasteByUser(String apiUserKey) {
         return pastebinServise.getListPasteByUser(DEV_KEY, apiUserKey, 100,
                 PASTE_PARAM_LIST);
+    }
+
+    public Call<ResponseBody> getRawPaste(String apiPasteKey){
+        return pastebinServise.getRawPaste(DEV_KEY,preferencesHelper.getToken(),apiPasteKey,
+                PASTE_PARAM_SHOW_PASTE);
     }
 
     public Call<ResponseBody> getListTrendingPaste() {
@@ -81,6 +87,10 @@ public class DataManager {
 
     public void deletePaste(PasteRoom paste) {
         new DeletePaste(paste).doInBackground();
+    }
+
+    public void exit() {
+        preferencesHelper.setToken(null);
     }
 
     private class GetAllPaste extends AsyncTask<Void, Void, List<PasteRoom>> {

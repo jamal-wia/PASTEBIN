@@ -56,4 +56,8 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
     public void insertPaste(PasteRoom paste) {
         dataManager.insertPaste(paste);
     }
+
+    public void exit() {
+        dataManager.exit();
+    }
 }

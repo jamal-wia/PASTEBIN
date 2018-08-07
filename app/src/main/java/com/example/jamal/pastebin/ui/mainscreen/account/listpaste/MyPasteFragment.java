@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,8 +20,13 @@ import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPasteView;
+import com.example.jamal.pastebin.ui.auth.AuthActivity;
+import com.example.jamal.pastebin.ui.infopaste.InfoPasteActivity;
+import com.example.jamal.pastebin.utils.RouterUtils;
 
 import java.util.List;
+
+import static com.example.jamal.pastebin.utils.RouterUtils.showActivity;
 
 public class MyPasteFragment extends Fragment implements MyPasteView {
     private MyPastePresenter presenter;
@@ -28,6 +34,8 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
     private ProgressBar progressBar;
 
     private RecyclerView recyclerView;
+
+    private FloatingActionButton exitFloatingActionButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +65,9 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
     @Override
     public void showListPaste(List<PasteNetwork> pasteNetworkList) {
         MyPasteAdapter adapter = new MyPasteAdapter(pasteNetworkList);
-        adapter.setOnItemLongClickListener(paste -> presenter.showDialogWindow(paste));
+        adapter.setItemLongClickListener(paste -> presenter.showDialogWindow(paste));
+        adapter.setItemClickListener(paste ->
+                startActivity(InfoPasteActivity.getStartIntent(getActivity(),paste)));
         recyclerView.setAdapter(adapter);
     }
 
@@ -95,5 +105,12 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.RecyclerView_list_paste_user);
         progressBar = view.findViewById(R.id.ProgressBar_listPasteByUser);
+
+        exitFloatingActionButton= view.findViewById(R.id.FloatingActionButton_lispPaste_exit);
+        exitFloatingActionButton.setOnClickListener(v->{
+            presenter.exit();
+            startActivity(new Intent(getActivity(), AuthActivity.class));
+            getActivity().finish();
+        });
     }
 }

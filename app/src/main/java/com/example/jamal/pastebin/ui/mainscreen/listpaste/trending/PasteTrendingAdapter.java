@@ -17,6 +17,7 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
     private List<PasteNetwork> pasteNetworkList;
 
     private OnItemLongClickListener itemLongClickListener;
+    private OnItemClickListener itemClickListener;
 
     public PasteTrendingAdapter(List<PasteNetwork> pasteNetworkList) {
         this.pasteNetworkList = pasteNetworkList;
@@ -45,6 +46,10 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
         this.itemLongClickListener = itemLongClickListener;
     }
 
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
     class PasteViewHolder extends RecyclerView.ViewHolder {
 
         private TextView titleTextView;
@@ -69,6 +74,7 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
             privateTextView.setText(String.valueOf(pasteNetworkData.getPastePrivate()));
             languageTextView.setText(String.valueOf(pasteNetworkData.getFormatLong()));
             sizeTextView.setText(String.valueOf(pasteNetworkData.getSize()));
+
             itemView.setOnLongClickListener(v -> {
                 itemLongClickListener.onItemLongClick(new PasteRoom(pasteNetworkData.getKey(),
                         pasteNetworkData.getDate(),
@@ -82,10 +88,26 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
                         pasteNetworkData.getHits()));
                 return false;
             });
+
+            itemView.setOnClickListener(v ->
+                    itemClickListener.onItemClick(new PasteRoom(pasteNetworkData.getKey(),
+                            pasteNetworkData.getDate(),
+                            pasteNetworkData.getTitle(),
+                            pasteNetworkData.getSize(),
+                            pasteNetworkData.getExpireDate(),
+                            pasteNetworkData.getPastePrivate(),
+                            pasteNetworkData.getFormatLong(),
+                            pasteNetworkData.getFormatShort(),
+                            pasteNetworkData.getUrl(),
+                            pasteNetworkData.getHits())));
         }
     }
 
     public interface OnItemLongClickListener {
         void onItemLongClick(PasteRoom pasteRoom);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(PasteRoom pasteRoom);
     }
 }

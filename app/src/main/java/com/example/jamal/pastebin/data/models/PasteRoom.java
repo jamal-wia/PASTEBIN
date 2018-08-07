@@ -2,9 +2,25 @@ package com.example.jamal.pastebin.data.models;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 @Entity
-public class PasteRoom {
+public class PasteRoom implements Parcelable{
+
+    public static final Creator<PasteRoom> CREATOR = new Creator<PasteRoom>() {
+        @Override
+        public PasteRoom createFromParcel(Parcel in) {
+            return new PasteRoom(in);
+        }
+
+        @Override
+        public PasteRoom[] newArray(int size) {
+            return new PasteRoom[size];
+        }
+    };
+
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -19,8 +35,7 @@ public class PasteRoom {
     private String url;
     private int hits;
 
-    public PasteRoom(/*int id,*/ String key, int date, String title, int size, int expireDate, int pastePrivate, String formatLong, String formatShort, String url, int hits) {
-//        this.id = id;
+    public PasteRoom(String key, int date, String title, int size, int expireDate, int pastePrivate, String formatLong, String formatShort, String url, int hits) {
         this.key = key;
         this.date = date;
         this.title = title;
@@ -32,7 +47,41 @@ public class PasteRoom {
         this.url = url;
         this.hits = hits;
     }
-//
+
+    protected PasteRoom(Parcel in) {
+        id = in.readInt();
+        key = in.readString();
+        date = in.readInt();
+        title = in.readString();
+        size = in.readInt();
+        expireDate = in.readInt();
+        pastePrivate = in.readInt();
+        formatLong = in.readString();
+        formatShort = in.readString();
+        url = in.readString();
+        hits = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(key);
+        dest.writeInt(date);
+        dest.writeString(title);
+        dest.writeInt(size);
+        dest.writeInt(expireDate);
+        dest.writeInt(pastePrivate);
+        dest.writeString(formatLong);
+        dest.writeString(formatShort);
+        dest.writeString(url);
+        dest.writeInt(hits);
+    }
+
     public int getId() {
         return id;
     }

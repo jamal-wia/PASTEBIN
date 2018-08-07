@@ -7,4 +7,6 @@ public class Constants {
     public static final String PASTE_PARAM_LIST = "list";
 
     public static final String PASTE_PARAM_TRENDS = "trends";
+
+    public static final String PASTE_PARAM_SHOW_PASTE = "show_paste";
 }

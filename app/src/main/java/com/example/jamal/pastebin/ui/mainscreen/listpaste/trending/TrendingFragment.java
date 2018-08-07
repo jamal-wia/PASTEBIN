@@ -19,8 +19,12 @@ import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingView;
+import com.example.jamal.pastebin.ui.infopaste.InfoPasteActivity;
+import com.example.jamal.pastebin.utils.RouterUtils;
 
 import java.util.List;
+
+import static com.example.jamal.pastebin.utils.RouterUtils.showActivity;
 
 public class TrendingFragment extends Fragment implements TrendingView {
 
@@ -55,6 +59,8 @@ public class TrendingFragment extends Fragment implements TrendingView {
         PasteTrendingAdapter pasteTrendingAdapter = new PasteTrendingAdapter(pasteNetworks);
         pasteTrendingAdapter.setItemLongClickListener(pasteRoom ->
                 presenter.showDialogWindow(pasteRoom));
+        pasteTrendingAdapter.setItemClickListener(pasteNetwork ->
+                showActivity(getActivity(), InfoPasteActivity.class));
         listTrendingPasteRecyclerView.setAdapter(pasteTrendingAdapter);
     }
 

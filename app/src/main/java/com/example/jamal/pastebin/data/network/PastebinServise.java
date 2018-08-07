@@ -33,6 +33,13 @@ public interface PastebinServise {
             @Field("api_dev_key") String apiDevKey,
             @Field("api_option") String apiOption);
 
+    @FormUrlEncoded
+    @POST("api_raw.php")
+    Call<ResponseBody> getRawPaste(@Field("api_dev_key")String apiDevKey,
+                                   @Field("api_user_key") String apiUserKey,
+                                   @Field("api_paste_key") String apiPasteKey,
+                                   @Field("api_option") String apiOption);
+
 
     @FormUrlEncoded
     @POST("api_post.php")

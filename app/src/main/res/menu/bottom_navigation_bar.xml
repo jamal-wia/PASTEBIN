@@ -16,12 +16,6 @@
 
     <item
         app:showAsAction="withText"
-        android:icon="@drawable/ic_message"
-        android:id="@+id/item_navigationBar_message"
-        android:title="@string/message"/>
-
-    <item
-        app:showAsAction="withText"
         android:icon="@drawable/ic_account"
         android:id="@+id/item_navigationBar_account"
         android:title="@string/account"/>

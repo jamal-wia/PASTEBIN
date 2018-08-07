@@ -16,9 +16,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
             case R.id.item_navigationBar_addPaste:
                 getView().startFragment(new CreatePasteFragment());
                 break;
-            case R.id.item_navigationBar_message:
-//                getView().startFragment(new AccountFragment());
-                break;
             case R.id.item_navigationBar_account:
                 getView().startFragment(new AccountFragment());
                 break;
