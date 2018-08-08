@@ -25,7 +25,10 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
                 if (response.isSuccessful()) {
                     try {
                         String code = response.body().string();
-                        getView().showPaste(code);
+                        if (code.equals("Bad API request," +
+                                " invalid permission to view this paste or invalid api_paste_key")) {
+                            getView().showTrendingPaste(apiPasteKey);
+                        } else getView().showPaste(code);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -34,7 +37,32 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
 
+    public void showRawTrendingPaste(String apiPasteKey) {
+
+        String test = "";
+        dataManager.getRawTrendingPaste(apiPasteKey).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String code = response.body().string();
+                        getView().showPaste(code);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        String s = "";
+                    }
+                } else {
+                    String s = "";
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                String s = "";
             }
         });
     }

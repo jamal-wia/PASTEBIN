@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
@@ -23,12 +24,11 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
     private CreatePastePresenter presenter;
 
     private EditText titleEditText;
-    private EditText privateEditText;
-    private EditText expireDataEditText;
     private EditText formatEditText;
     private EditText codeEditText;
 
-    private Button createButton;
+    private String expireData;
+    private int privateInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,18 +62,42 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
 
     private void initViews(@NonNull View view) {
         titleEditText = view.findViewById(R.id.EditText_createPaste_title);
-        privateEditText = view.findViewById(R.id.EditText_createPaste_private);
-        expireDataEditText = view.findViewById(R.id.EditText_createPaste_expireData);
         formatEditText = view.findViewById(R.id.EditText_createPaste_format);
         codeEditText = view.findViewById(R.id.EditText_createPaste_code);
 
-        createButton = view.findViewById(R.id.Button_createPaste_create);
+        RadioGroup privateRadioGroup = view.findViewById(R.id.RadioGroup_createPaste_private);
+        privateRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case 0:
+                    privateInt = 0;
+                    break;
+                case 1:
+                    privateInt = 1;
+                    break;
+            }
+        });
+        RadioGroup expireDataRadioGroup = view.findViewById(R.id.RadioGroup_createPaste_expireData);
+        expireDataRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case 0:
+                    expireData = "N";
+                    break;
+                case 1:
+                    expireData = "10M";
+                    break;
+                case 2:
+                    expireData = "1H";
+                    break;
+            }
+        });
+
+        Button createButton = view.findViewById(R.id.Button_createPaste_create);
         createButton.setOnClickListener(v ->
                 presenter.createButtonClick(
                         titleEditText.getText().toString(),
                         formatEditText.getText().toString(),
-                        Integer.valueOf(privateEditText.getText().toString()),
-                        expireDataEditText.getText().toString(),
+                        privateInt,
+                        expireData,
                         codeEditText.getText().toString()));
     }
 }

@@ -40,9 +40,13 @@ public class DataManager {
                 PASTE_PARAM_LIST);
     }
 
-    public Call<ResponseBody> getRawPaste(String apiPasteKey){
-        return pastebinServise.getRawPaste(DEV_KEY,preferencesHelper.getToken(),apiPasteKey,
+    public Call<ResponseBody> getRawPaste(String apiPasteKey) {
+        return pastebinServise.getRawPaste(DEV_KEY, preferencesHelper.getToken(), apiPasteKey,
                 PASTE_PARAM_SHOW_PASTE);
+    }
+
+    public Call<ResponseBody> getRawTrendingPaste(String apiPasteKey) {
+        return pastebinServise.getRawTrendingPaste(apiPasteKey);
     }
 
     public Call<ResponseBody> getListTrendingPaste() {

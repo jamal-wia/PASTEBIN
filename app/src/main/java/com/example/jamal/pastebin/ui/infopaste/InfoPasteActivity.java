@@ -52,6 +52,11 @@ public class InfoPasteActivity extends AppCompatActivity implements InfoPasteVie
     }
 
     @Override
+    public void showTrendingPaste(String apiPasteKey) {
+        presenter.showRawTrendingPaste(apiPasteKey);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:

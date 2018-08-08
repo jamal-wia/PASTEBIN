@@ -16,10 +16,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BASIC;
+import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 public class App extends Application {
 
-    public static final String BASE_URL = "https://pastebin.com/api/";
+    public static final String BASE_URL = "https://pastebin.com/";
 
     private static DataManager dataManager;
 
@@ -29,7 +30,7 @@ public class App extends Application {
 
         // HttpLoggingInterceptor
         HttpLoggingInterceptor httpLoggingInterceptor= new HttpLoggingInterceptor()
-                .setLevel(BASIC);
+                .setLevel(BODY);
 
         // OkHttpClient
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

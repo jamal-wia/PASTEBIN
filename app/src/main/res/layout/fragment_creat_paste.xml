@@ -19,20 +19,50 @@
             android:ems="10"
             android:hint="title" />
 
-        <EditText
-            android:id="@+id/EditText_createPaste_private"
+        <RadioGroup
+            android:id="@+id/RadioGroup_createPaste_private"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="3"
-            android:hint="private"
-            android:inputType="number" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/EditText_createPaste_expireData"
+            <RadioButton
+                android:id="@+id/RadioButton_createPaste_public"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Public" />
+
+            <RadioButton
+                android:id="@+id/RadioButton_createPaste_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Private" />
+        </RadioGroup>
+
+
+        <RadioGroup
+            android:id="@+id/RadioGroup_createPaste_expireData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="5"
-            android:hint="expireData" />
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/RadioButton_createPaste_never"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never" />
+
+            <RadioButton
+                android:id="@+id/RadioButton_createPaste_10Minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 Minutes" />
+
+            <RadioButton
+                android:id="@+id/RadioButton_createPaste_1Hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 Hour" />
+        </RadioGroup>
 
         <EditText
             android:id="@+id/EditText_createPaste_format"

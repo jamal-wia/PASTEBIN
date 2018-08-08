@@ -5,4 +5,6 @@ import com.example.jamal.pastebin.mvp.global.MvpView;
 public interface InfoPasteView extends MvpView {
 
     void showPaste(String code);
+
+    void showTrendingPaste(String apiPasteKey);
 }
