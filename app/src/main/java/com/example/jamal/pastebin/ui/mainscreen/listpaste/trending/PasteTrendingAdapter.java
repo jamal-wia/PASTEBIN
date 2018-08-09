@@ -71,7 +71,7 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
 
         private void setPasteData(PasteNetwork pasteNetworkData) {
             titleTextView.setText(String.valueOf(pasteNetworkData.getTitle()));
-
+            sizeTextView.setText(String.valueOf(pasteNetworkData.getSize()));
 
             if (pasteNetworkData.getPastePrivate() == 0) {
                 privateTextView.setText("Public");
@@ -84,7 +84,6 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
             } else {
                 languageTextView.setText(String.valueOf(pasteNetworkData.getFormatLong()));
             }
-            sizeTextView.setText(String.valueOf(pasteNetworkData.getSize()));
 
             itemView.setOnLongClickListener(v -> {
                 itemLongClickListener.onItemLongClick(new PasteRoom(pasteNetworkData.getKey(),
@@ -97,9 +96,6 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
                         pasteNetworkData.getFormatShort(),
                         pasteNetworkData.getUrl(),
                         pasteNetworkData.getHits()));
-
-                String s = pasteNetworkData.getKey();
-                String test = "";
                 return false;
             });
 

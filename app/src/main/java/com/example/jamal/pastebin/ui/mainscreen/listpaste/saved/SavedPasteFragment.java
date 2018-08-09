@@ -1,5 +1,8 @@
 package com.example.jamal.pastebin.ui.mainscreen.listpaste.saved;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +17,11 @@ import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.saved.SavedPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.saved.SavedPasteView;
+import com.example.jamal.pastebin.ui.infopaste.InfoPasteActivity;
 
 import java.util.List;
+
+import static android.content.Intent.EXTRA_TEXT;
 
 public class SavedPasteFragment extends Fragment implements SavedPasteView {
     private SavedPastePresenter presenter;
@@ -44,7 +50,40 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
 
     @Override
     public void showListSaved(List<PasteRoom> pasteRooms) {
-        recyclerView.setAdapter(new SavedPasteAdapter(pasteRooms));
+        SavedPasteAdapter adapter = new SavedPasteAdapter(pasteRooms);
+        adapter.setItemLongClickListener(pasteRoom -> {
+            presenter.itemLongClick(pasteRoom);
+        });
+        adapter.setItemClickListener(pasteRoom -> {
+            String s = pasteRoom.getCode();
+            startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
+        });
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showDialogWindow(PasteRoom pasteRoom) {
+        String[] items = {"Share", "View in...", "delete"};
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle("Selected action")
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.putExtra(EXTRA_TEXT, pasteRoom.getUrl());
+                            shareIntent.setType("text/plain");
+                            startActivity(shareIntent);
+                            break;
+                        case 1:
+                            Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pasteRoom.getUrl()));
+                            startActivity(viewIntent);
+                            break;
+                        case 2:
+                            presenter.delete(pasteRoom);
+                            break;
+                    }
+                }).create();
+        alertDialog.show();
     }
 
     @Override

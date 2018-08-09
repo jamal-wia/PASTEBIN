@@ -82,7 +82,12 @@ public class DataManager {
     }
 
     public PasteRoom getPaste(int id) {
-        return new GetPaste(id).doInBackground();
+        try {
+            return new GetPaste(id).execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void insertPaste(PasteRoom paste) {

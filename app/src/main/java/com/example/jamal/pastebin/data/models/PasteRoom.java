@@ -7,7 +7,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 @Entity
-public class PasteRoom implements Parcelable{
+public class PasteRoom implements Parcelable {
 
     public static final Creator<PasteRoom> CREATOR = new Creator<PasteRoom>() {
         @Override
@@ -34,6 +34,7 @@ public class PasteRoom implements Parcelable{
     private String formatShort;
     private String url;
     private int hits;
+    private String code;
 
     public PasteRoom(String key, int date, String title, int size, int expireDate, int pastePrivate, String formatLong, String formatShort, String url, int hits) {
         this.key = key;
@@ -60,6 +61,7 @@ public class PasteRoom implements Parcelable{
         formatShort = in.readString();
         url = in.readString();
         hits = in.readInt();
+        code = in.readString();
     }
 
     @Override
@@ -80,6 +82,7 @@ public class PasteRoom implements Parcelable{
         dest.writeString(formatShort);
         dest.writeString(url);
         dest.writeInt(hits);
+        dest.writeString(code);
     }
 
     public int getId() {
@@ -128,5 +131,13 @@ public class PasteRoom implements Parcelable{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

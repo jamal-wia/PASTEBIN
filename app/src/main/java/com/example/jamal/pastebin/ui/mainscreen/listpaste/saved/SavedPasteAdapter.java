@@ -13,8 +13,10 @@ import com.example.jamal.pastebin.data.models.PasteRoom;
 import java.util.List;
 
 public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Holder> {
-
     private List<PasteRoom> pasteRooms;
+
+    private OnItemLongClickListener itemLongClickListener;
+    private OnItemClickListener itemClickListener;
 
     public SavedPasteAdapter(List<PasteRoom> pasteRooms) {
         this.pasteRooms = pasteRooms;
@@ -36,6 +38,14 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
     @Override
     public int getItemCount() {
         return pasteRooms.size();
+    }
+
+    public void setItemLongClickListener(OnItemLongClickListener itemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener;
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     class Holder extends RecyclerView.ViewHolder {
@@ -62,6 +72,23 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
             privateTextView.setText(String.valueOf(pasteRoom.getPastePrivate()));
             languageTextView.setText(String.valueOf(pasteRoom.getFormatLong()));
             sizeTextView.setText(String.valueOf(pasteRoom.getSize()));
+
+            itemView.setOnLongClickListener(v -> {
+                itemLongClickListener.onItemLongClick(pasteRoom);
+                return false;
+            });
+
+            itemView.setOnClickListener(v -> {
+                itemClickListener.onItemClick(pasteRoom);
+            });
         }
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(PasteRoom pasteRoom);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(PasteRoom pasteRoom);
     }
 }

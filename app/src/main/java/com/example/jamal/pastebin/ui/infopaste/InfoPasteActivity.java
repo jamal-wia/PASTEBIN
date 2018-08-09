@@ -15,6 +15,8 @@ import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.infopaste.InfoPastePresenter;
 import com.example.jamal.pastebin.mvp.infopaste.InfoPasteView;
 
+import static android.content.Intent.EXTRA_TEXT;
+
 public class InfoPasteActivity extends AppCompatActivity implements InfoPasteView {
     private InfoPastePresenter presenter;
 
@@ -38,7 +40,13 @@ public class InfoPasteActivity extends AppCompatActivity implements InfoPasteVie
         presenter.attachView(this);
         pasteRoom = getIntent().getParcelableExtra(EXTRA_PASTE);
         initViews();
-        presenter.showRawPaste(pasteRoom.getKey());
+
+        String s = getIntent().getStringExtra(EXTRA_TEXT);
+
+        if (pasteRoom.getCode() == null) presenter.showRawPaste(pasteRoom.getKey());
+        else {
+            showPaste(pasteRoom.getCode());
+        }
     }
 
     @Override
@@ -58,7 +66,7 @@ public class InfoPasteActivity extends AppCompatActivity implements InfoPasteVie
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 break;

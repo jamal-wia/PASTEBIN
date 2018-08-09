@@ -8,4 +8,6 @@ import java.util.List;
 public interface SavedPasteView extends MvpView{
 
     void showListSaved(List<PasteRoom> pasteRooms);
+
+    void showDialogWindow(PasteRoom pasteRoom);
 }

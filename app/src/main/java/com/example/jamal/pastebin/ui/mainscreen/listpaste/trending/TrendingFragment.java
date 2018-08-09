@@ -17,15 +17,11 @@ import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
-import com.example.jamal.pastebin.mvp.infopaste.InfoPastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.listpaste.trending.TrendingView;
 import com.example.jamal.pastebin.ui.infopaste.InfoPasteActivity;
-import com.example.jamal.pastebin.utils.RouterUtils;
 
 import java.util.List;
-
-import static com.example.jamal.pastebin.utils.RouterUtils.showActivity;
 
 public class TrendingFragment extends Fragment implements TrendingView {
 
@@ -61,19 +57,19 @@ public class TrendingFragment extends Fragment implements TrendingView {
         pasteTrendingAdapter.setItemLongClickListener(pasteRoom ->
                 presenter.showDialogWindow(pasteRoom));
         pasteTrendingAdapter.setItemClickListener(pasteRoom ->
-                startActivity(InfoPasteActivity.getStartIntent(getActivity(),pasteRoom)));
+                startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom)));
         listTrendingPasteRecyclerView.setAdapter(pasteTrendingAdapter);
     }
 
     @Override
     public void showDialogWindow(PasteRoom pasteRoom) {
-        String[] items = {"Save", "Share"};
+        String[] items = {"Save", "Share", "View in..."};
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Selected action")
                 .setItems(items, (dialog, which) -> {
                     switch (which) {
                         case 0:
-                            presenter.insetPaste(pasteRoom);
+                            presenter.insertPaste(pasteRoom);
                             break;
                         case 1:
                             Intent shareIntent = new Intent(Intent.ACTION_SEND);

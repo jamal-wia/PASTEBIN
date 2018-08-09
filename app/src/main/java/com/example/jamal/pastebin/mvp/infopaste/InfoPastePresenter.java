@@ -42,8 +42,6 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
     }
 
     public void showRawTrendingPaste(String apiPasteKey) {
-
-        String test = "";
         dataManager.getRawTrendingPaste(apiPasteKey).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -53,10 +51,8 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
                         getView().showPaste(code);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        String s = "";
                     }
                 } else {
-                    String s = "";
                 }
             }
 

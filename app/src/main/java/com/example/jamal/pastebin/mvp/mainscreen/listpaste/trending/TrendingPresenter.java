@@ -52,8 +52,26 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
         });
     }
 
-    public void insetPaste(PasteRoom paste) {
-        dataManager.insertPaste(paste);
+    public void insertPaste(PasteRoom paste) {
+        dataManager.getRawTrendingPaste(paste.getKey()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String code = response.body().string();
+                        paste.setCode(code);
+                        dataManager.insertPaste(paste);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     public void showDialogWindow(PasteRoom pasteRoom) {

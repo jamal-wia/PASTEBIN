@@ -1,7 +1,10 @@
 package com.example.jamal.pastebin.mvp.mainscreen.listpaste.saved;
 
 import com.example.jamal.pastebin.data.global.DataManager;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.global.MvpPresenter;
+
+import java.util.List;
 
 public class SavedPastePresenter extends MvpPresenter<SavedPasteView> {
 
@@ -13,5 +16,13 @@ public class SavedPastePresenter extends MvpPresenter<SavedPasteView> {
 
     public void showListSaved() {
         if (getView() != null) getView().showListSaved(dataManager.getAllPaste());
+    }
+
+    public void itemLongClick(PasteRoom pasteRoom) {
+        if (getView() != null) getView().showDialogWindow(pasteRoom);
+    }
+
+    public void delete(PasteRoom pasteRoom) {
+        dataManager.deletePaste(pasteRoom);
     }
 }

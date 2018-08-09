@@ -73,7 +73,7 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
 
     @Override
     public void showDialogWindow(PasteRoom paste) {
-        String[] items = {"Save", "Share", "View in"};
+        String[] items = {"Save", "Share", "View in..."};
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Selected action")
                 .setItems(items, (dialog, which) -> {

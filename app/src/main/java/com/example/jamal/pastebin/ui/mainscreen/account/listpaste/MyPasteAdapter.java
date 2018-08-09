@@ -70,9 +70,20 @@ public class MyPasteAdapter extends RecyclerView.Adapter<MyPasteAdapter.Holder> 
 
         private void setData(PasteNetwork pasteNetwork) {
             titleTextView.setText(String.valueOf(pasteNetwork.getTitle()));
-            privateTextView.setText(String.valueOf(pasteNetwork.getPastePrivate()));
-            languageTextView.setText(String.valueOf(pasteNetwork.getFormatLong()));
             sizeTextView.setText(String.valueOf(pasteNetwork.getSize()));
+
+
+            if (pasteNetwork.getPastePrivate() == 0) {
+                privateTextView.setText("Public");
+            } else {
+                privateTextView.setText("Private");
+            }
+
+            if (pasteNetwork.getFormatLong().equals("None")) {
+                languageTextView.setText("Text");
+            } else {
+                languageTextView.setText(String.valueOf(pasteNetwork.getFormatLong()));
+            }
 
             itemView.setOnLongClickListener(v -> {
                 itemLongClickListener.onItemLongClick(new PasteRoom(
