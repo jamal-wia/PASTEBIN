@@ -29,7 +29,7 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
                         String code = response.body().string();
                         if (code.equals("Bad API request," +
                                 " invalid permission to view this paste or invalid api_paste_key")) {
-                            getView().showTrendingPaste(apiPasteKey);
+                            if (getView() != null) getView().showTrendingPaste(apiPasteKey);
                         } else getView().showPaste(code);
                     } catch (IOException e) {
                         e.printStackTrace();

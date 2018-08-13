@@ -20,7 +20,7 @@ import static android.content.Intent.EXTRA_TEXT;
 public class InfoPasteActivity extends AppCompatActivity implements InfoPasteView {
     private InfoPastePresenter presenter;
 
-    private static String EXTRA_PASTE = "EXTRA_PASTE";
+    private static final String EXTRA_PASTE = "EXTRA_PASTE";
 
     private TextView mainTextView;
 
