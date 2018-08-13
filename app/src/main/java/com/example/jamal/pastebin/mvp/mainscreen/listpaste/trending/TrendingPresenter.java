@@ -20,8 +20,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TrendingPresenter extends MvpPresenter<TrendingView> {
-
     private DataManager dataManager;
+
+    private Call<ResponseBody> rawTrendingPaste;
 
     public TrendingPresenter(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -29,7 +30,8 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
 
     public void showListTrendingPaste() {
         if (getView() != null) getView().showProgress(true);
-        dataManager.getListTrendingPaste().enqueue(new Callback<ResponseBody>() {
+        rawTrendingPaste=dataManager.getListTrendingPaste();
+        rawTrendingPaste.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
@@ -76,5 +78,9 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
 
     public void showDialogWindow(PasteRoom pasteRoom) {
         getView().showDialogWindow(pasteRoom);
+    }
+
+    public void cancelRequest() {
+        rawTrendingPaste.cancel();
     }
 }

@@ -57,6 +57,7 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        presenter.cancelRequest();
         presenter.detachView();
     }
 

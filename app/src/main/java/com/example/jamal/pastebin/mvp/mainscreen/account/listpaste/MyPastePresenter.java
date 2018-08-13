@@ -20,25 +20,29 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyPastePresenter extends MvpPresenter<MyPasteView> {
-
     private DataManager dataManager;
+
+    private Call<ResponseBody> listPasteByUser;
 
     public MyPastePresenter(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 
     public void showListPaste() {
-        dataManager.getListPasteByUser(dataManager.getToken()).enqueue(new Callback<ResponseBody>() {
+        listPasteByUser = dataManager.getListPasteByUser(dataManager.getToken());
+        listPasteByUser.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String answer = response.body().string();
-                    if (getView() != null) {
-                        getView().showListPaste(Parse.parsePaste(answer));
-                        getView().showProgress(false);
+                if (response.isSuccessful()) {
+                    try {
+                        String answer = response.body().string();
+                        if (getView() != null) {
+                            getView().showListPaste(Parse.parsePaste(answer));
+                            getView().showProgress(false);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -77,5 +81,9 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
 
     public void exit() {
         dataManager.exit();
+    }
+
+    public void cancelRequest() {
+        if (listPasteByUser != null) listPasteByUser.cancel();
     }
 }

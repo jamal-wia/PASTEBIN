@@ -44,7 +44,7 @@ public interface PastebinServise {
 
 //    @FormUrlEncoded
     @POST("raw/{apiPasteKey}")
-    Call<ResponseBody> getRawTrendingPaste(@Path("apiPasteKey") String apiPasteKey);
+    Call<ResponseBody> getRawTrendingPaste(@Path("apiPasteKfey") String apiPasteKey);
 
     @FormUrlEncoded
     @POST("api/api_post.php")

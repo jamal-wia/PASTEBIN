@@ -74,6 +74,13 @@ public class InfoPasteActivity extends AppCompatActivity implements InfoPasteVie
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.cancelRequest();
+        presenter.detachView();
+    }
+
     @SuppressLint("RestrictedApi")
     private void initViews() {
         Toolbar toolbar = findViewById(R.id.Toolbar_infoPaste);

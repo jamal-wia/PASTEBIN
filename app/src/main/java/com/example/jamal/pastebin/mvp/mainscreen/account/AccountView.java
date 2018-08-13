@@ -8,4 +8,6 @@ public interface AccountView extends MvpView{
     void showInfoUser(User user);
 
     void editColorType(int color);
+
+    void showMessage(String noNetwork);
 }

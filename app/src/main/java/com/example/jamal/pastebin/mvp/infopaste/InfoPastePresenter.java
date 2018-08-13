@@ -11,15 +11,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
-
     private DataManager dataManager;
+
+    private Call<ResponseBody> getRawPasteCall;
 
     public InfoPastePresenter(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 
     public void showRawPaste(String apiPasteKey) {
-        dataManager.getRawPaste(apiPasteKey).enqueue(new Callback<ResponseBody>() {
+        getRawPasteCall = dataManager.getRawPaste(apiPasteKey);
+        getRawPasteCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
@@ -37,6 +39,7 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }
@@ -61,5 +64,9 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
                 String s = "";
             }
         });
+    }
+
+    public void cancelRequest() {
+        getRawPasteCall.cancel();
     }
 }

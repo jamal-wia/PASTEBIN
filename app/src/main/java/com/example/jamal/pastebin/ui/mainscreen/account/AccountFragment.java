@@ -16,6 +16,7 @@ import com.example.jamal.pastebin.data.models.User;
 import com.example.jamal.pastebin.mvp.mainscreen.account.AccountPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.account.AccountView;
 import com.example.jamal.pastebin.ui.mainscreen.account.listpaste.MyPasteFragment;
+import com.example.jamal.pastebin.utils.CommonUtils;
 import com.example.jamal.pastebin.utils.RouterUtils;
 import com.squareup.picasso.Picasso;
 
@@ -59,6 +60,11 @@ public class AccountFragment extends Fragment implements AccountView {
     }
 
     @Override
+    public void showMessage(String noNetwork) {
+        CommonUtils.showToastShort(getActivity(),noNetwork);
+    }
+
+    @Override
     public void showInfoUser(User user) {
         Picasso.get().load(user.getAvatarUrl()).into(avatarCircleImageView);
 
@@ -72,6 +78,7 @@ public class AccountFragment extends Fragment implements AccountView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        presenter.cancelRequest();
         presenter.detachView();
     }
 

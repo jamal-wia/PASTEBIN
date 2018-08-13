@@ -99,6 +99,7 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        presenter.cancelRequest();
         presenter.detachView();
     }
 

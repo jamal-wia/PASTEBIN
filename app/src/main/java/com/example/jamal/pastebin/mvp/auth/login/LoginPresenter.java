@@ -10,8 +10,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginPresenter extends MvpPresenter<LoginView> {
-
     private DataManager dataManager;
+
+    private Call<ResponseBody> loginCall;
 
     public LoginPresenter(DataManager dataManager) {
         this.dataManager = dataManager;
@@ -21,10 +22,11 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         if (getView() != null && isValidFields(login, password)) {
             getView().showProgress(true);
             // Выполняет авторизацию
-            dataManager.login(login, password).enqueue(new Callback<ResponseBody>() {
+            loginCall = dataManager.login(login, password);
+            loginCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    //выполняем запрос
+
                     if (getView() != null) {
                         getView().showProgress(false);
                         if (response.isSuccessful()) {
@@ -52,6 +54,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                                         break;
                                 }
                             } catch (Exception e) {
+
                             }
                         }
                     }
@@ -80,5 +83,9 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
             getView().showEmptyPasswordError();
         }
         return isValid;
+    }
+
+    public void cancelRequest() {
+        loginCall.cancel();
     }
 }

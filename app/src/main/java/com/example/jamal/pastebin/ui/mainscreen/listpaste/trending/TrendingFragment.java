@@ -89,6 +89,7 @@ public class TrendingFragment extends Fragment implements TrendingView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        presenter.cancelRequest();
         presenter.detachView();
     }
 

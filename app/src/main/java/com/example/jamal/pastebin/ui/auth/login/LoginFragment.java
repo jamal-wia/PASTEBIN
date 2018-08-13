@@ -23,7 +23,7 @@ import static com.example.jamal.pastebin.utils.CommonUtils.showToastShort;
 
 public class LoginFragment extends Fragment implements LoginView {
 
-    private LoginPresenter loginPresenter;
+    private LoginPresenter presenter;
 
     private EditText userNameEdit;
     private EditText passwordEdit;
@@ -33,8 +33,8 @@ public class LoginFragment extends Fragment implements LoginView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginPresenter = new LoginPresenter(App.getDataManager());
-        loginPresenter.attachView(this);
+        presenter = new LoginPresenter(App.getDataManager());
+        presenter.attachView(this);
     }
 
     @Override
@@ -88,7 +88,8 @@ public class LoginFragment extends Fragment implements LoginView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        loginPresenter.detachView();
+        presenter.cancelRequest();
+        presenter.detachView();
     }
 
     private void initViews(@NonNull View view) {
@@ -98,7 +99,7 @@ public class LoginFragment extends Fragment implements LoginView {
         progressBar = view.findViewById(R.id.ProgressBar_login);
 
         loginButton = view.findViewById(R.id.Button_login);
-        loginButton.setOnClickListener(v -> loginPresenter.login(
+        loginButton.setOnClickListener(v -> presenter.login(
                 userNameEdit.getText().toString(),
                 passwordEdit.getText().toString()));
     }
