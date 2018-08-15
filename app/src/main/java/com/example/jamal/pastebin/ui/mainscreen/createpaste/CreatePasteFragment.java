@@ -7,9 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
@@ -26,6 +29,8 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
     private EditText titleEditText;
     private EditText formatEditText;
     private EditText codeEditText;
+
+    private Spinner spinnerFormat;
 
     private String expireData;
     private int privateInt;
@@ -65,6 +70,44 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
         titleEditText = view.findViewById(R.id.EditText_createPaste_title);
         formatEditText = view.findViewById(R.id.EditText_createPaste_format);
         codeEditText = view.findViewById(R.id.EditText_createPaste_code);
+
+//        String[] dataSpinner = {
+//                "Java", "Kotlin", "C#", "Js", "Python"
+//        };
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+//                android.R.layout.simple_spinner_item, dataSpinner);
+//        spinnerFormat = view.findViewById(R.id.Spinner_createPaste_format);
+//        spinnerFormat.setPrompt("programming language");
+//        spinnerFormat.setAdapter(adapter);
+//        spinnerFormat.setOnItemClickListener((parent, view1, position, id) -> {
+//
+//        });
+
+//        String[] data = {"one", "two", "three", "four", "five"};
+//
+//        // адаптер
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        Spinner spinner = view.findViewById(R.id.Spinner_createPaste_format);
+//        spinner.setAdapter(adapter);
+//        // заголовок
+//        spinner.setPrompt("Title");
+//        // выделяем элемент
+//        spinner.setSelection(2);
+//        // устанавливаем обработчик нажатия
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view,
+//                                       int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> arg0) {
+//
+//            }
+//        });
 
         RadioGroup privateRadioGroup = view.findViewById(R.id.RadioGroup_createPaste_private);
         privateRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {

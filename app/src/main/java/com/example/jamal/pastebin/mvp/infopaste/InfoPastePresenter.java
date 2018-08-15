@@ -67,6 +67,6 @@ public class InfoPastePresenter extends MvpPresenter<InfoPasteView> {
     }
 
     public void cancelRequest() {
-        getRawPasteCall.cancel();
+        if (getRawPasteCall != null) getRawPasteCall.cancel();
     }
 }

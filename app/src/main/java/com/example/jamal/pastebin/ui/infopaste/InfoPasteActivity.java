@@ -1,6 +1,7 @@
 package com.example.jamal.pastebin.ui.infopaste;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -41,12 +42,8 @@ public class InfoPasteActivity extends AppCompatActivity implements InfoPasteVie
         pasteRoom = getIntent().getParcelableExtra(EXTRA_PASTE);
         initViews();
 
-        String s = getIntent().getStringExtra(EXTRA_TEXT);
-
         if (pasteRoom.getCode() == null) presenter.showRawPaste(pasteRoom.getKey());
-        else {
-            showPaste(pasteRoom.getCode());
-        }
+        else showPaste(pasteRoom.getCode());
     }
 
     @Override

@@ -64,6 +64,11 @@
                 android:text="1 Hour" />
         </RadioGroup>
 
+        <Spinner
+            android:id="@+id/Spinner_createPaste_format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <EditText
             android:id="@+id/EditText_createPaste_format"
             android:layout_width="wrap_content"
