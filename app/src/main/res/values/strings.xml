@@ -24,4 +24,63 @@
     <string name="add_paste">Add Paste</string>
     <string name="message">Message</string>
     <string name="account">Account</string>
+    <string name="go_out">Do you really want to go out?</string>
+    <string name="warning">Warning</string>
+    <string name="exit">Exit</string>
+
+    <string-array name="language">
+        <item>Text</item>
+        <item>JavaScript</item>
+        <item>jQuery</item>
+        <item>PHP</item>
+        <item>HTML</item>
+        <item>HTML 5</item>
+        <item>CSS</item>
+        <item>JSON</item>
+        <item>MXML</item>
+        <item>XML</item>
+        <item>Ruby</item>
+        <item>Python</item>
+        <item>Java</item>
+        <item>Groovy</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Objective C</item>
+        <item>C#</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>SQL</item>
+        <item>MySQL</item>
+        <item>Go</item>
+        <item>Scala</item>
+        <item>Delphi</item>
+    </string-array>
+
+    <string-array name="language_pref">
+        <item>text</item>
+        <item>javascript</item>
+        <item>jquery</item>
+        <item>php</item>
+        <item>html4strict</item>
+        <item>html5</item>
+        <item>css</item>
+        <item>json</item>
+        <item>mxml</item>
+        <item>xml</item>
+        <item>ruby</item>
+        <item>python</item>
+        <item>java</item>
+        <item>groovy</item>
+        <item>kotlin</item>
+        <item>swift</item>
+        <item>objc</item>
+        <item>csharp</item>
+        <item>c</item>
+        <item>cpp</item>
+        <item>sql</item>
+        <item>mysql</item>
+        <item>go</item>
+        <item>scala</item>
+        <item>delphi</item>
+    </string-array>
 </resources>

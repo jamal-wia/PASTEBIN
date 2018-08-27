@@ -69,9 +69,19 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
 
         private void setPasteData(PasteRoom pasteRoom) {
             titleTextView.setText(String.valueOf(pasteRoom.getTitle()));
-            privateTextView.setText(String.valueOf(pasteRoom.getPastePrivate()));
-            languageTextView.setText(String.valueOf(pasteRoom.getFormatLong()));
             sizeTextView.setText(String.valueOf(pasteRoom.getSize()));
+
+            if (pasteRoom.getPastePrivate() == 0) {
+                privateTextView.setText("Public");
+            } else {
+                privateTextView.setText("Private");
+            }
+
+            if (pasteRoom.getFormatLong().equals("None")) {
+                languageTextView.setText("Text");
+            } else {
+                languageTextView.setText(String.valueOf(pasteRoom.getFormatLong()));
+            }
 
             itemView.setOnLongClickListener(v -> {
                 itemLongClickListener.onItemLongClick(pasteRoom);

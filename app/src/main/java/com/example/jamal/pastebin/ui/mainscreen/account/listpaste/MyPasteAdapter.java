@@ -72,7 +72,6 @@ public class MyPasteAdapter extends RecyclerView.Adapter<MyPasteAdapter.Holder> 
             titleTextView.setText(String.valueOf(pasteNetwork.getTitle()));
             sizeTextView.setText(String.valueOf(pasteNetwork.getSize()));
 
-
             if (pasteNetwork.getPastePrivate() == 0) {
                 privateTextView.setText("Public");
             } else {

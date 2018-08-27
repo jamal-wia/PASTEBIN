@@ -3,13 +3,13 @@ package com.example.jamal.pastebin.ui.mainscreen.createpaste;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -18,7 +18,8 @@ import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.mvp.mainscreen.createpaste.CreatePastePresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.createpaste.CreatePasteView;
-import com.example.jamal.pastebin.utils.CommonUtils;
+
+import java.util.List;
 
 import static com.example.jamal.pastebin.utils.CommonUtils.showToastShort;
 
@@ -27,13 +28,11 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
     private CreatePastePresenter presenter;
 
     private EditText titleEditText;
-    private EditText formatEditText;
     private EditText codeEditText;
-
-    private Spinner spinnerFormat;
 
     private String expireData;
     private int privateInt;
+    private String languageFormat;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,46 +67,8 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
 
     private void initViews(@NonNull View view) {
         titleEditText = view.findViewById(R.id.EditText_createPaste_title);
-        formatEditText = view.findViewById(R.id.EditText_createPaste_format);
         codeEditText = view.findViewById(R.id.EditText_createPaste_code);
-
-//        String[] dataSpinner = {
-//                "Java", "Kotlin", "C#", "Js", "Python"
-//        };
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-//                android.R.layout.simple_spinner_item, dataSpinner);
-//        spinnerFormat = view.findViewById(R.id.Spinner_createPaste_format);
-//        spinnerFormat.setPrompt("programming language");
-//        spinnerFormat.setAdapter(adapter);
-//        spinnerFormat.setOnItemClickListener((parent, view1, position, id) -> {
-//
-//        });
-
-//        String[] data = {"one", "two", "three", "four", "five"};
-//
-//        // адаптер
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        Spinner spinner = view.findViewById(R.id.Spinner_createPaste_format);
-//        spinner.setAdapter(adapter);
-//        // заголовок
-//        spinner.setPrompt("Title");
-//        // выделяем элемент
-//        spinner.setSelection(2);
-//        // устанавливаем обработчик нажатия
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view,
-//                                       int position, long id) {
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> arg0) {
-//
-//            }
-//        });
+        initSpinner(view);
 
         RadioGroup privateRadioGroup = view.findViewById(R.id.RadioGroup_createPaste_private);
         privateRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -135,13 +96,35 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
             }
         });
 
-        Button createButton = view.findViewById(R.id.Button_createPaste_create);
+        FloatingActionButton createButton = view.findViewById(R.id.FloatingButton_createPaste_create);
         createButton.setOnClickListener(v ->
                 presenter.createButtonClick(
                         titleEditText.getText().toString(),
-                        formatEditText.getText().toString(),
+                        languageFormat,
                         privateInt,
                         expireData,
-                        codeEditText.getText().toString()));
+                        codeEditText.getText().toString()
+                )
+        );
+    }
+
+    private void initSpinner(View view) {
+        Spinner spinnerFormat = view.findViewById(R.id.Spinner_createPaste_format);
+        ArrayAdapter<?> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.language,
+                android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFormat.setAdapter(arrayAdapter);
+        String[] strings = getResources().getStringArray(R.array.language_pref);
+        spinnerFormat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                languageFormat = strings[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

@@ -1,6 +1,7 @@
 package com.example.jamal.pastebin.ui.mainscreen.account.listpaste;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,10 +23,12 @@ import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPastePresen
 import com.example.jamal.pastebin.mvp.mainscreen.account.listpaste.MyPasteView;
 import com.example.jamal.pastebin.ui.auth.AuthActivity;
 import com.example.jamal.pastebin.ui.infopaste.InfoPasteActivity;
+import com.example.jamal.pastebin.utils.CommonUtils;
 import com.example.jamal.pastebin.utils.RouterUtils;
 
 import java.util.List;
 
+import static com.example.jamal.pastebin.utils.CommonUtils.showStandartDialogWindowsWithSecondButton;
 import static com.example.jamal.pastebin.utils.RouterUtils.showActivity;
 
 public class MyPasteFragment extends Fragment implements MyPasteView {
@@ -67,7 +70,7 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
         MyPasteAdapter adapter = new MyPasteAdapter(pasteNetworkList);
         adapter.setItemLongClickListener(paste -> presenter.showDialogWindow(paste));
         adapter.setItemClickListener(paste ->
-                startActivity(InfoPasteActivity.getStartIntent(getActivity(),paste)));
+                startActivity(InfoPasteActivity.getStartIntent(getActivity(), paste)));
         recyclerView.setAdapter(adapter);
     }
 
@@ -88,11 +91,12 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
                             startActivity(shareIntent);
                             break;
                         case 2:
-                            Intent viewIntent = new Intent(Intent.ACTION_VIEW,Uri.parse(paste.getUrl()));
+                            Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(paste.getUrl()));
                             startActivity(viewIntent);
                             break;
                     }
                 }).create();
+        alertDialog.show();
         alertDialog.show();
     }
 
@@ -107,11 +111,24 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
         recyclerView = view.findViewById(R.id.RecyclerView_list_paste_user);
         progressBar = view.findViewById(R.id.ProgressBar_listPasteByUser);
 
-        exitFloatingActionButton= view.findViewById(R.id.FloatingActionButton_lispPaste_exit);
-        exitFloatingActionButton.setOnClickListener(v->{
-            presenter.exit();
-            startActivity(new Intent(getActivity(), AuthActivity.class));
-            getActivity().finish();
+        exitFloatingActionButton = view.findViewById(R.id.FloatingActionButton_lispPaste_exit);
+        exitFloatingActionButton.setOnClickListener(v -> {
+
+            showStandartDialogWindowsWithSecondButton(
+                    getContext(),
+                    getResources().getString(R.string.warning),
+                    getResources().getString(R.string.go_out),
+                    getResources().getString(R.string.exit),
+                    getResources().getString(R.string.cancel),
+                    () -> {
+
+                        presenter.exit();
+                        startActivity(new Intent(getActivity(), AuthActivity.class));
+                        getActivity().finish();
+                    },
+                    () -> {
+                    }
+            );
         });
     }
 }

@@ -26,38 +26,36 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
             loginCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                    if (getView() != null) {
-                        getView().showProgress(false);
-                        if (response.isSuccessful()) {
-                            try {
-                                String token = response.body().string();
-                                switch (token) {
-                                    case "Bad API request, use POST request, not GET":
-                                        getView().showMessage("Bad API request, use POST request, not GET");
-                                        break;
-                                    case "Bad API request, invalid api_dev_key":
-                                        getView().showMessage("Bad API request, invalid api_dev_key");
-                                        break;
-                                    case "Bad API request, invalid login":
-                                        getView().showMessage("Bad API request, invalid login");
-                                        break;
-                                    case "Bad API request, account not active":
-                                        getView().showMessage("Bad API request, account not active");
-                                        break;
-                                    case "Bad API request, invalid POST parameters":
-                                        getView().showMessage("Bad API request, invalid POST parameters");
-                                        break;
-                                    default:
-                                        dataManager.setToken(token);
-                                        getView().navigateToMain();
-                                        break;
-                                }
-                            } catch (Exception e) {
-
+                    if (getView() != null) getView().showProgress(false);
+                    if (response.isSuccessful() && getView() != null) {
+                        try {
+                            String token = response.body().string();
+                            switch (token) {
+                                case "Bad API request, use POST request, not GET":
+                                    getView().showMessage("Bad API request, use POST request, not GET");
+                                    break;
+                                case "Bad API request, invalid api_dev_key":
+                                    getView().showMessage("Bad API request, invalid api_dev_key");
+                                    break;
+                                case "Bad API request, invalid login":
+                                    getView().showMessage("Bad API request, invalid login");
+                                    break;
+                                case "Bad API request, account not active":
+                                    getView().showMessage("Bad API request, account not active");
+                                    break;
+                                case "Bad API request, invalid POST parameters":
+                                    getView().showMessage("Bad API request, invalid POST parameters");
+                                    break;
+                                default:
+                                    dataManager.setToken(token);
+                                    getView().navigateToMain();
+                                    break;
                             }
+                        } catch (Exception e) {
+
                         }
                     }
+
                 }
 
                 @Override
@@ -86,6 +84,6 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
     }
 
     public void cancelRequest() {
-        loginCall.cancel();
+        if (loginCall != null) loginCall.cancel();
     }
 }
