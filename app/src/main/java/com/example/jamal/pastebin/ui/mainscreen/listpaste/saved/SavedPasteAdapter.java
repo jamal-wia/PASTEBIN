@@ -18,7 +18,7 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
     private OnItemLongClickListener itemLongClickListener;
     private OnItemClickListener itemClickListener;
 
-    public SavedPasteAdapter(List<PasteRoom> pasteRooms) {
+    SavedPasteAdapter(List<PasteRoom> pasteRooms) {
         this.pasteRooms = pasteRooms;
     }
 
@@ -48,6 +48,14 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
         this.itemClickListener = itemClickListener;
     }
 
+    public List<PasteRoom> getPasteRooms() {
+        return pasteRooms;
+    }
+
+    public void setPasteRooms(List<PasteRoom> pasteRooms) {
+        this.pasteRooms = pasteRooms;
+    }
+
     class Holder extends RecyclerView.ViewHolder {
 
         private TextView titleTextView;
@@ -55,7 +63,7 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
         private TextView languageTextView;
         private TextView sizeTextView;
 
-        public Holder(View itemView) {
+        Holder(View itemView) {
             super(itemView);
             initViews(itemView);
         }

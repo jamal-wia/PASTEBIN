@@ -6,6 +6,7 @@ import com.example.jamal.pastebin.data.local.Database;
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.data.network.PastebinServise;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.saved.SavedPasteFragment;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -91,11 +92,11 @@ public class DataManager {
     }
 
     public void insertPaste(PasteRoom paste) {
-        new InsertPaste(paste).execute()/*.doInBackground()*/;
+        new InsertPaste(paste).execute();
     }
 
     public void deletePaste(PasteRoom paste) {
-        new DeletePaste(paste).doInBackground();
+        new DeletePaste(paste).execute();
     }
 
     public void exit() {

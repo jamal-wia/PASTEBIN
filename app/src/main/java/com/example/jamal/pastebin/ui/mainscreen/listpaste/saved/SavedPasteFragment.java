@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.jamal.pastebin.App;
 import com.example.jamal.pastebin.R;
@@ -27,6 +28,8 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
     private SavedPastePresenter presenter;
 
     private RecyclerView recyclerView;
+    private SavedPasteAdapter adapter;
+    private LinearLayout noPasteLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,15 +53,18 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
 
     @Override
     public void showListSaved(List<PasteRoom> pasteRooms) {
-        SavedPasteAdapter adapter = new SavedPasteAdapter(pasteRooms);
-        adapter.setItemLongClickListener(pasteRoom -> {
-            presenter.itemLongClick(pasteRoom);
-        });
-        adapter.setItemClickListener(pasteRoom -> {
-            String s = pasteRoom.getCode();
-            startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
-        });
-        recyclerView.setAdapter(adapter);
+        if (pasteRooms.size() == 0) {
+            noPasteLinearLayout.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new SavedPasteAdapter(pasteRooms);
+            adapter.setItemLongClickListener(pasteRoom -> {
+                presenter.itemLongClick(pasteRoom);
+            });
+            adapter.setItemClickListener(pasteRoom -> {
+                startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
+            });
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -80,10 +86,17 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
                             break;
                         case 2:
                             presenter.delete(pasteRoom);
+                            adapter.getPasteRooms().remove(pasteRoom);
+                            presenter.updateRecycleView();
                             break;
                     }
                 }).create();
         alertDialog.show();
+    }
+
+    @Override
+    public void updateRemoveRecycleView(List<PasteRoom> allPaste) {
+        updateRecyclerView(allPaste);
     }
 
     @Override
@@ -92,7 +105,14 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
         presenter.detachView();
     }
 
+    private void updateRecyclerView(List<PasteRoom> allPaste) {
+        adapter.setPasteRooms(allPaste);
+        adapter.notifyDataSetChanged();
+        if (adapter.getPasteRooms().size() == 0) noPasteLinearLayout.setVisibility(View.VISIBLE);
+    }
+
     private void initViews(View view) {
         recyclerView = view.findViewById(R.id.RecyclerView_savedPaste);
+        noPasteLinearLayout = view.findViewById(R.id.LinearLayout_savedPaste_noPaste);
     }
 }

@@ -27,6 +27,7 @@
     <string name="go_out">Do you really want to go out?</string>
     <string name="warning">Warning</string>
     <string name="exit">Exit</string>
+    <string name="save_the_post_first">save the post first</string>
 
     <string-array name="language">
         <item>Text</item>

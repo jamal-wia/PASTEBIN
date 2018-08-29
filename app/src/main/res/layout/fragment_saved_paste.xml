@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainscreen.listpaste.saved.SavedPasteFragment">
 
+    <LinearLayout
+        android:id="@+id/LinearLayout_savedPaste_noPaste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:src="@drawable/ic_no_paste"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:textSize="20sp"
+            android:text="@string/save_the_post_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/RecyclerView_savedPaste"
         android:layout_width="match_parent"
