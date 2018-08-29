@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -28,7 +28,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:hint="title" />
+                    android:hint="Title"
+                    android:textColorHint="@android:color/black" />
 
                 <Spinner
                     android:id="@+id/Spinner_createPaste_format"
@@ -81,17 +82,21 @@
                 android:layout_height="wrap_content"
                 android:text="1 Hour" />
         </RadioGroup>
-    </LinearLayout>
 
-    <EditText
-        android:id="@+id/EditText_createPaste_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/thema_code"
-        android:ems="16"
-        android:hint="code"
-        android:padding="4dp" />
+        <EditText
+
+            android:layout_margin="16dp"
+            android:id="@+id/EditText_createPaste_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/thema_code"
+            android:ems="16"
+            android:hint="Text"
+            android:gravity="top|left"
+            android:padding="4dp"
+            android:textColorHint="@android:color/black" />
+    </LinearLayout>
 
 
     <android.support.design.widget.FloatingActionButton

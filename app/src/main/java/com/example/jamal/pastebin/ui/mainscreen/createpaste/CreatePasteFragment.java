@@ -114,11 +114,12 @@ public class CreatePasteFragment extends Fragment implements CreatePasteView {
                 android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFormat.setAdapter(arrayAdapter);
-        String[] strings = getResources().getStringArray(R.array.language_pref);
+        String[] languagePref = getResources().getStringArray(R.array.language_pref);
         spinnerFormat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                languageFormat = strings[i];
+                languageFormat = languagePref[i];
+                codeEditText.setHint(getResources().getStringArray(R.array.language)[i]);
             }
 
             @Override
