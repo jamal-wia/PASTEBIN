@@ -20,14 +20,7 @@ import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragm
 import com.example.jamal.pastebin.utils.RouterUtils;
 
 public class ListPasteFragment extends Fragment implements ListPasteView {
-
     private ListPastePresenter presenter;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list_paste, container, false);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -36,6 +29,12 @@ public class ListPasteFragment extends Fragment implements ListPasteView {
         presenter.attachView(this);
         presenter.startView();
         initViews(view);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_list_paste, container, false);
     }
 
     @Override

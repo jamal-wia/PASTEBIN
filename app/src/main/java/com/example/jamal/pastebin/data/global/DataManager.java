@@ -6,7 +6,6 @@ import com.example.jamal.pastebin.data.local.Database;
 import com.example.jamal.pastebin.data.local.PreferencesHelper;
 import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.data.network.PastebinServise;
-import com.example.jamal.pastebin.ui.mainscreen.listpaste.saved.SavedPasteFragment;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -95,6 +94,10 @@ public class DataManager {
         new InsertPaste(paste).execute();
     }
 
+    public void updatePaste(PasteRoom pasteRoom){
+        new UpdatePaste(pasteRoom).execute();
+    }
+
     public void deletePaste(PasteRoom paste) {
         new DeletePaste(paste).execute();
     }
@@ -108,11 +111,6 @@ public class DataManager {
         @Override
         protected List<PasteRoom> doInBackground(Void... voids) {
             return database.pasteDao().getAll();
-        }
-
-        @Override
-        protected void onPostExecute(List<PasteRoom> pasteRooms) {
-            super.onPostExecute(pasteRooms);
         }
     }
 
@@ -156,6 +154,21 @@ public class DataManager {
         @Override
         protected Void doInBackground(Void... voids) {
             database.pasteDao().delete(pasteRoom);
+            return null;
+        }
+    }
+
+    private class UpdatePaste extends AsyncTask <Void,Void,Void>{
+
+        private PasteRoom pasteRoom;
+
+        private UpdatePaste(PasteRoom pasteRoom) {
+            this.pasteRoom = pasteRoom;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            database.pasteDao().update(pasteRoom);
             return null;
         }
     }

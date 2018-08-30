@@ -6,13 +6,18 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.jamal.pastebin.R;
+import com.example.jamal.pastebin.data.models.PasteRoom;
 import com.example.jamal.pastebin.mvp.mainscreen.main.MainPresenter;
 import com.example.jamal.pastebin.mvp.mainscreen.main.MainView;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.saved.SavedPasteFragment;
+import com.example.jamal.pastebin.ui.mainscreen.listpaste.trending.TrendingFragment;
+
+import java.util.List;
 
 import static com.example.jamal.pastebin.utils.RouterUtils.showFragment;
 
-public class MainActivity extends AppCompatActivity implements MainView {
-
+public class MainActivity extends AppCompatActivity implements MainView,
+        TrendingFragment.UpdateSaveRecyclerViewListener {
     private MainPresenter presenter;
 
     @Override
@@ -37,7 +42,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void startView(Fragment fragment) {
-        showFragment(R.id.FrameLayout_main_container, fragment, this);
+        showFragment(R.id.FrameLayout_main_container, fragment,
+                this);
+    }
+
+    @Override
+    public void updateSaveRecyclerView(List<PasteRoom> allPaste) {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment instanceof SavedPasteFragment) {
+                ((SavedPasteFragment) fragment).updateRemoveRecycleView(allPaste);
+            }
+        }
     }
 
     @Override

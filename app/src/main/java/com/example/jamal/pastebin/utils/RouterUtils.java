@@ -20,7 +20,14 @@ public class RouterUtils {
         return fragment;
     }
 
-    public static void showActivity(Context context,Class<?> Cls){
-        context.startActivity(new Intent(context,Cls));
+    public static Fragment showFragmentWithTag(int container, Fragment fragment,
+                                               FragmentActivity fragmentActivity, String tag) {
+        fragmentActivity.getSupportFragmentManager().beginTransaction()
+                .replace(container, fragment, tag).commit();
+        return fragment;
+    }
+
+    public static void showActivity(Context context, Class<?> Cls) {
+        context.startActivity(new Intent(context, Cls));
     }
 }

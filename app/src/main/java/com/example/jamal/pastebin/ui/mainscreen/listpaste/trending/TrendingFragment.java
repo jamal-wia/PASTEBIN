@@ -1,6 +1,7 @@
 package com.example.jamal.pastebin.ui.mainscreen.listpaste.trending;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,8 +29,15 @@ public class TrendingFragment extends Fragment implements TrendingView {
     private TrendingPresenter presenter;
 
     private RecyclerView listTrendingPasteRecyclerView;
+    private UpdateSaveRecyclerViewListener updateSaveRecyclerViewListener;
 
     private ProgressBar progressBar;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        updateSaveRecyclerViewListener = (UpdateSaveRecyclerViewListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +77,10 @@ public class TrendingFragment extends Fragment implements TrendingView {
                 .setItems(items, (dialog, which) -> {
                     switch (which) {
                         case 0:
+                            List<PasteRoom> pasteRooms1 = presenter.getAllPaste();
                             presenter.insertPaste(pasteRoom);
+                            List<PasteRoom> pasteRooms2 = presenter.getAllPaste();
+                            updateSaveRecyclerViewListener.updateSaveRecyclerView(presenter.getAllPaste());
                             break;
                         case 1:
                             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -96,5 +107,9 @@ public class TrendingFragment extends Fragment implements TrendingView {
     private void initViews(@NonNull View view) {
         listTrendingPasteRecyclerView = view.findViewById(R.id.RecyclerView_listTrendingPaste_listPaste);
         progressBar = view.findViewById(R.id.ProgressBar_trendingPaste);
+    }
+
+    public interface UpdateSaveRecyclerViewListener {
+        void updateSaveRecyclerView(List<PasteRoom> allPaste);
     }
 }

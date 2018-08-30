@@ -30,7 +30,7 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
 
     public void showListTrendingPaste() {
         if (getView() != null) getView().showProgress(true);
-        rawTrendingPaste=dataManager.getListTrendingPaste();
+        rawTrendingPaste = dataManager.getListTrendingPaste();
         rawTrendingPaste.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -55,6 +55,7 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
     }
 
     public void insertPaste(PasteRoom paste) {
+        dataManager.insertPaste(paste);
         dataManager.getRawTrendingPaste(paste.getKey()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -62,7 +63,7 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
                     try {
                         String code = response.body().string();
                         paste.setCode(code);
-                        dataManager.insertPaste(paste);
+                        dataManager.updatePaste(paste);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -74,6 +75,10 @@ public class TrendingPresenter extends MvpPresenter<TrendingView> {
 
             }
         });
+    }
+
+    public List<PasteRoom> getAllPaste() {
+        return dataManager.getAllPaste();
     }
 
     public void showDialogWindow(PasteRoom pasteRoom) {

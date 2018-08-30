@@ -109,6 +109,7 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
         adapter.setPasteRooms(allPaste);
         adapter.notifyDataSetChanged();
         if (adapter.getPasteRooms().size() == 0) noPasteLinearLayout.setVisibility(View.VISIBLE);
+        else noPasteLinearLayout.setVisibility(View.GONE);
     }
 
     private void initViews(View view) {
