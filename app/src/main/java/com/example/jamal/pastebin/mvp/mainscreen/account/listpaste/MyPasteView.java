@@ -11,4 +11,8 @@ public interface MyPasteView extends MvpView {
     void showListPaste(List<PasteNetwork> pasteNetworkList);
 
     void showDialogWindow(PasteRoom paste);
+
+    void showMessage(String message);
+
+    void removePaste(PasteRoom pasteRoom);
 }

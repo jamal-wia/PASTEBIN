@@ -60,6 +60,10 @@ public class DataManager {
                 apiPastePrivate, apiPasteExpireDate, "paste", DEV_KEY, apiPasteCode);
     }
 
+    public Call<ResponseBody> removePaste(String apiPasteKey){
+        return pastebinServise.removePaste(DEV_KEY,preferencesHelper.getToken(),apiPasteKey,"delete");
+    }
+
     public Call<ResponseBody> infoUser() {
         return pastebinServise.infoUser(DEV_KEY, preferencesHelper.getToken(), "userdetails");
     }

@@ -86,4 +86,25 @@ public class MyPastePresenter extends MvpPresenter<MyPasteView> {
     public void cancelRequest() {
         if (listPasteByUser != null) listPasteByUser.cancel();
     }
+
+    public void removePaste(PasteRoom pasteRoom) {
+        dataManager.removePaste(pasteRoom.getKey()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && getView() != null) {
+                    try {
+                        getView().removePaste(pasteRoom);
+                        getView().showMessage(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
 }

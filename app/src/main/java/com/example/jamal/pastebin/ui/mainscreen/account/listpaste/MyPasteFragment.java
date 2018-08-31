@@ -76,7 +76,7 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
 
     @Override
     public void showDialogWindow(PasteRoom paste) {
-        String[] items = {"Save", "Share", "View in..."};
+        String[] items = {"Save", "Share", "View in...", "Remove this paste"};
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Selected action")
                 .setItems(items, (dialog, which) -> {
@@ -94,10 +94,23 @@ public class MyPasteFragment extends Fragment implements MyPasteView {
                             Intent viewIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(paste.getUrl()));
                             startActivity(viewIntent);
                             break;
+                        case 3:
+                            presenter.removePaste(paste);
+                            break;
                     }
                 }).create();
         alertDialog.show();
         alertDialog.show();
+    }
+
+    @Override
+    public void removePaste(PasteRoom pasteRoom) {
+        presenter.showListPaste();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        CommonUtils.showToastShort(getContext(), message);
     }
 
     @Override

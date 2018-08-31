@@ -56,7 +56,17 @@ public interface PastebinServise {
             @Field("api_paste_expire_date") String apiExpireDate,
             @Field("api_option") String apiOption,
             @Field("api_dev_key") String apiDevKey,
-            @Field("api_paste_code") String apiPasteCode);
+            @Field("api_paste_code") String apiPasteCode
+    );
+
+    @FormUrlEncoded
+    @POST("api/api_post.php")
+    Call<ResponseBody> removePaste(
+            @Field("api_dev_key") String apiDevKey,
+            @Field("api_user_key") String apiUserKey,
+            @Field("api_paste_key") String apiPasteKey,
+            @Field("api_option") String apiOption
+    );
 
     @FormUrlEncoded
     @POST("api/api_post.php")
