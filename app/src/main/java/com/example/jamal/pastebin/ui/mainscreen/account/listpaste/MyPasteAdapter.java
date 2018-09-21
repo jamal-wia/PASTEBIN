@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
+import com.example.jamal.pastebin.utils.MathUtil;
 
 import java.util.List;
 
@@ -70,7 +71,8 @@ public class MyPasteAdapter extends RecyclerView.Adapter<MyPasteAdapter.Holder> 
 
         private void setData(PasteNetwork pasteNetwork) {
             titleTextView.setText(String.valueOf(pasteNetwork.getTitle()));
-            sizeTextView.setText(String.valueOf(pasteNetwork.getSize()));
+            Double size = Double.valueOf(pasteNetwork.getSize()) / 1024.0;
+            sizeTextView.setText(MathUtil.round(size,2).toString()+" mb");
 
             if (pasteNetwork.getPastePrivate() == 0) {
                 privateTextView.setText("Public");
@@ -81,6 +83,7 @@ public class MyPasteAdapter extends RecyclerView.Adapter<MyPasteAdapter.Holder> 
             if (pasteNetwork.getFormatLong().equals("None")) {
                 languageTextView.setText("Text");
             } else {
+                languageTextView.setTextColor(itemView.getResources().getColor(R.color.colorAccent));
                 languageTextView.setText(String.valueOf(pasteNetwork.getFormatLong()));
             }
 

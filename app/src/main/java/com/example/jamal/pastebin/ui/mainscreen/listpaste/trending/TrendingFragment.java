@@ -77,9 +77,7 @@ public class TrendingFragment extends Fragment implements TrendingView {
                 .setItems(items, (dialog, which) -> {
                     switch (which) {
                         case 0:
-                            List<PasteRoom> pasteRooms1 = presenter.getAllPaste();
                             presenter.insertPaste(pasteRoom);
-                            List<PasteRoom> pasteRooms2 = presenter.getAllPaste();
                             updateSaveRecyclerViewListener.updateSaveRecyclerView(presenter.getAllPaste());
                             break;
                         case 1:

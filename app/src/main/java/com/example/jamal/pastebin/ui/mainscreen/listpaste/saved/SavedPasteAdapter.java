@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteRoom;
+import com.example.jamal.pastebin.utils.MathUtil;
 
 import java.util.List;
+
+import static com.example.jamal.pastebin.utils.MathUtil.round;
 
 public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Holder> {
     private List<PasteRoom> pasteRooms;
@@ -77,7 +80,8 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
 
         private void setPasteData(PasteRoom pasteRoom) {
             titleTextView.setText(String.valueOf(pasteRoom.getTitle()));
-            sizeTextView.setText(String.valueOf(pasteRoom.getSize()));
+            Double size = Double.valueOf(pasteRoom.getSize()) / 1024.0;
+            sizeTextView.setText(round(size,2).toString()+" mb");
 
             if (pasteRoom.getPastePrivate() == 0) {
                 privateTextView.setText("Public");
@@ -88,6 +92,7 @@ public class SavedPasteAdapter extends RecyclerView.Adapter<SavedPasteAdapter.Ho
             if (pasteRoom.getFormatLong().equals("None")) {
                 languageTextView.setText("Text");
             } else {
+                languageTextView.setTextColor(itemView.getResources().getColor(R.color.colorAccent));
                 languageTextView.setText(String.valueOf(pasteRoom.getFormatLong()));
             }
 

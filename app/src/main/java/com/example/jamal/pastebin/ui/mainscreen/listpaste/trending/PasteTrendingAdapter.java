@@ -10,8 +10,11 @@ import android.widget.TextView;
 import com.example.jamal.pastebin.R;
 import com.example.jamal.pastebin.data.models.PasteNetwork;
 import com.example.jamal.pastebin.data.models.PasteRoom;
+import com.example.jamal.pastebin.utils.MathUtil;
 
 import java.util.List;
+
+import static com.example.jamal.pastebin.utils.MathUtil.*;
 
 public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdapter.PasteViewHolder> {
     private List<PasteNetwork> pasteNetworkList;
@@ -71,7 +74,8 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
 
         private void setPasteData(PasteNetwork pasteNetworkData) {
             titleTextView.setText(String.valueOf(pasteNetworkData.getTitle()));
-            sizeTextView.setText(String.valueOf(pasteNetworkData.getSize()));
+            Double size = Double.valueOf(pasteNetworkData.getSize()) / 1024.0;
+            sizeTextView.setText(round(size,2).toString()+" mb");
 
             if (pasteNetworkData.getPastePrivate() == 0) {
                 privateTextView.setText("Public");
@@ -82,6 +86,7 @@ public class PasteTrendingAdapter extends RecyclerView.Adapter<PasteTrendingAdap
             if (pasteNetworkData.getFormatLong().equals("None")) {
                 languageTextView.setText("Text");
             } else {
+                languageTextView.setTextColor(itemView.getResources().getColor(R.color.colorAccent));
                 languageTextView.setText(String.valueOf(pasteNetworkData.getFormatLong()));
             }
 

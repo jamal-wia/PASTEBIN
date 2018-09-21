@@ -56,14 +56,16 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
         if (pasteRooms.size() == 0) {
             noPasteLinearLayout.setVisibility(View.VISIBLE);
         } else {
-            adapter = new SavedPasteAdapter(pasteRooms);
-            adapter.setItemLongClickListener(pasteRoom -> {
-                presenter.itemLongClick(pasteRoom);
-            });
-            adapter.setItemClickListener(pasteRoom -> {
-                startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
-            });
-            recyclerView.setAdapter(adapter);
+            if (adapter == null) {
+                adapter = new SavedPasteAdapter(pasteRooms);
+                adapter.setItemLongClickListener(pasteRoom -> {
+                    presenter.itemLongClick(pasteRoom);
+                });
+                adapter.setItemClickListener(pasteRoom -> {
+                    startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
+                });
+                recyclerView.setAdapter(adapter);
+            }
         }
     }
 
@@ -106,8 +108,19 @@ public class SavedPasteFragment extends Fragment implements SavedPasteView {
     }
 
     private void updateRecyclerView(List<PasteRoom> allPaste) {
-        adapter.setPasteRooms(allPaste);
-        adapter.notifyDataSetChanged();
+        if (adapter == null) {
+            adapter = new SavedPasteAdapter(allPaste);
+            adapter.setItemLongClickListener(pasteRoom -> {
+                presenter.itemLongClick(pasteRoom);
+            });
+            adapter.setItemClickListener(pasteRoom -> {
+                startActivity(InfoPasteActivity.getStartIntent(getActivity(), pasteRoom));
+            });
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+            adapter.setPasteRooms(allPaste);
+        }
         if (adapter.getPasteRooms().size() == 0) noPasteLinearLayout.setVisibility(View.VISIBLE);
         else noPasteLinearLayout.setVisibility(View.GONE);
     }
