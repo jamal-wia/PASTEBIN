@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name="wia.soft.official.pastebin.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,18 +14,18 @@
         android:theme="@style/AppTheme">
         <activity
             android:theme="@style/AppThemeMainScreen"
-            android:name=".ui.mainscreen.main.MainActivity"
+            android:name="wia.soft.official.pastebin.ui.mainscreen.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name="wia.soft.official.pastebin.ui.auth.AuthActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.splashscreen.SplashActivity">
+        <activity android:name="wia.soft.official.pastebin.ui.splashscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.infopaste.InfoPasteActivity" />
+        <activity android:name="wia.soft.official.pastebin.ui.infopaste.InfoPasteActivity" />
     </application>
 </manifest>

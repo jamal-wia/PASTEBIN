@@ -2,8 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     defaultConfig {
-        applicationId "com.example.jamal.pastebin"
+        applicationId "wia.soft.official.pastebin"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
